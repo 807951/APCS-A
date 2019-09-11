@@ -2,6 +2,7 @@
  * makes array methods
  * @author (Arin Gadre)
  * @version (81919)
+ * testing github
  */
 import java.util.*;
 public class Array
