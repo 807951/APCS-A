@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=DigitArray
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ DigitArray\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n\ public\ void\ loadArray()\ \r\n\ //loads\ the\ digits\ from\ num\r\n//\ into\ the\ digits\ array\r\n//\ one\ digit\ oer\ array\ element\r\npublic\ int[]\ getDigits()\r\n\r\n
+comment1.params=a
+comment1.target=void\ loadArray(int)
+numComments=2
