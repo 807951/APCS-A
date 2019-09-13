@@ -1,30 +1,28 @@
 
 /**
- * Write a description of class DigitArray here.
+ * creates loadArray and getDigits methods
  *
- * @author (your name)
- * @version (a version number or a date)
- * public void loadArray() 
- * //loads the digits from num
-// into the digits array
-// one digit oer array element
-public int[] getDigits()
+ * @author (Arin Gadre)
+ * @version (912)
 
  */
 public class DigitArray
 {
     private int num;
-    private int[] digits;
+    private int[] digits = new int[214748364];
     private int arrayLength = 0;
     private int index = 0;
     public void loadArray(int a){
-        digits = new int[arrayLength++];
         while (a != 0){
             arrayLength++;
-            digits = new int[arrayLength];
             digits[index] = a % 10;
             a = a/10;
             index++;
+        }
+    }
+    public void getDigits(){
+        for(int i = 0; i < digits.length; i++){
+            System.out.println(digits[i]);
         }
     }
 }
