@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Runner here.
+ * makes random sentence
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Arin Gadre)
+ * @version (920)
  */
 public class Runner
 {
