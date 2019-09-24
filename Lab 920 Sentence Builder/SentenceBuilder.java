@@ -3,19 +3,6 @@
  * Makes sentence builder method
  * @author (Arin Gadre)
  * @version (920)
- * public void loadSentences()
-public String getSentence()
-
-public String getNounPhrase()
-public String getPrepositionalPhrase()
-public String getVerbPhrase()
-
-noun phrase = determiner + adjective + noun
-verb phrase = adverb + verb
-prepositional phrase = preposition + determiner + adjective + noun
-
-noun phrase + verb phrase + preposition phrase
-
  */
 import java.util.Random;
 public class SentenceBuilder
@@ -30,7 +17,6 @@ public class SentenceBuilder
     private String prepositionPhrase;
     private String verbPhrase;
     private String randomSentence;
-
     public String getRandomNoun(){
         Random n = new Random();
         int a = n.nextInt(nouns.length);
