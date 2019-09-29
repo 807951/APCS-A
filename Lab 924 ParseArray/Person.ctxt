@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Person
+comment0.text=\r\n\ creates\ parseArray\ method\r\n\ @author\ (Arin\ Gadre)\r\n\ @version\ (929)\r\n
+comment1.params=fullName
+comment1.target=Person(java.lang.String)
+comment2.params=
+comment2.target=void\ parseArray()
+comment3.params=
+comment3.target=java.lang.String\ getFirstName()
+comment4.params=
+comment4.target=java.lang.String\ getMiddleName()
+comment5.params=
+comment5.target=java.lang.String\ getLastName()
+numComments=6

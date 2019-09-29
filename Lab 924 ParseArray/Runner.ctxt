@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Runner
+comment1.params=
+comment1.target=void\ main()
+comment2.params=p\ n
+comment2.target=Person[]\ extendArray(Person[],\ int)
+comment3.params=persons
+comment3.target=void\ printNames(Person[])
+numComments=4
