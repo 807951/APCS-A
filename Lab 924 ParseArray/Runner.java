@@ -10,7 +10,6 @@ public class Runner
     public static void main(){
         System.out.println(); //fixes error with terminal window
         Scanner sc = new Scanner(System.in);
-        PersonList pl = new PersonList();
         Person[] p2 = new Person[max_count];
         int count = 0;
         boolean done = false;
