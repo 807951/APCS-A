@@ -1,7 +1,6 @@
 package MagpieActivityStarterCode.activity2;
 
 
-
 /**
  * A program to carry on conversations with a human user.
  * This version uses a nested if to handle default responses.
@@ -43,22 +42,22 @@ public class Magpie2
             response = "I don't know, check your calendar.";
         }
         else if (statement.indexOf("mother") >= 0
-        || statement.indexOf("father") >= 0
-        || statement.indexOf("sister") >= 0
-        || statement.indexOf("brother") >= 0)
+            || statement.indexOf("father") >= 0
+            || statement.indexOf("sister") >= 0
+            || statement.indexOf("brother") >= 0)
         {
             response = "Tell me more about your family.";
         }
         else if (statement.indexOf("cat") >= 0
-        || statement.indexOf("dog") >= 0
-        || statement.indexOf("fish") >= 0
-        || statement.indexOf("bunny") >= 0
-        || statement.indexOf("snake") >= 0)
+            || statement.indexOf("dog") >= 0
+            || statement.indexOf("fish") >= 0
+            || statement.indexOf("bunny") >= 0
+            || statement.indexOf("snake") >= 0)
         {
             response = "Tell me more about your pets.";
         }
         else if(statement.indexOf("Ettlin") >= 0
-        || statement.indexOf("ettlin") >= 0){
+            || statement.indexOf("ettlin") >= 0){
             response = "He sounds like a great teacher.";
         }
         else if(statement.indexOf("name") >= 0){
