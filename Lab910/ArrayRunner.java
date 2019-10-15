@@ -10,7 +10,7 @@ public class ArrayRunner
 {
     public static void main(){
         Array a1 = new Array();
-        int[] nums = new int[100];
+        //int[] nums = new int[100];
         a1.loadArray(nums);
         a1.printArray(nums);
         System.out.println("Sum is: " + a1.getSum(nums));
