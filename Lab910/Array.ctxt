@@ -1,15 +1,15 @@
 #BlueJ class context
 comment0.target=Array
-comment1.params=array
-comment1.target=void\ loadArray(int[])
-comment2.params=array
-comment2.target=void\ printArray(int[])
-comment3.params=array
-comment3.target=int\ getSum(int[])
-comment4.params=array
-comment4.target=int\ getMean(int[])
-comment5.params=array
-comment5.target=double\ getMedian(int[])
-comment6.params=arr
-comment6.target=int\ getMode(int[])
+comment1.params=ints
+comment1.target=void\ loadArray(java.util.ArrayList)
+comment2.params=ints
+comment2.target=void\ printArray(java.util.ArrayList)
+comment3.params=ints
+comment3.target=int\ getSum(java.util.ArrayList)
+comment4.params=ints
+comment4.target=int\ getMean(java.util.ArrayList)
+comment5.params=ints
+comment5.target=double\ getMedian(java.util.ArrayList)
+comment6.params=ints
+comment6.target=int\ getMode(java.util.ArrayList)
 numComments=7

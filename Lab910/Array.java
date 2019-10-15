@@ -3,65 +3,64 @@
  * @author (Arin Gadre)
  * @version (81919)
  */
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 public class Array
 {
     private static int maxValue = 100;
-    public void loadArray(int[] array){
-        for(int i = 0; i < array.length; i++){
-            array[i] = (int)(Math.random()*maxValue);
+    public void loadArray(ArrayList<Integer> ints){
+        for(int i = 0; i < ints.size(); i++){
+            ints.add((int)(Math.random()*maxValue));
         }
     }
 
-    public void printArray(int[] array){
-        for(int i = 0; i < array.length; i++){
-            System.out.print(array[i] + ", ");
-        }
-        System.out.println();
+    public void printArray(ArrayList<Integer> ints){
+            System.out.print(ints);
     }
 
-    public int getSum(int[] array){
+    public int getSum(ArrayList<Integer> ints){
         int sum = 0;
-        for(int i = 0; i < array.length; i++){
-            sum += array[i]; 
+        for(int i = 0; i < ints.size(); i++){
+            sum += ints.get(i); 
         }
         return sum;
     }
 
-    public int getMean(int[] array){
+    public int getMean (ArrayList<Integer> ints)
+    {
         int sum = 0;
-        for(int i = 0; i < array.length; i++){
-            sum += array[i]; 
+        for(int i = 0; i < ints.size(); i++){
+            sum += ints.get(i); 
         }
-        return sum/array.length;
+        return sum/ints.size();
     }
 
-    public double getMedian(int[] array)
+    public double getMedian(ArrayList<Integer> ints)
     {
-        Arrays.sort(array);
+        Collections.sort(ints, Collections.reverseOrder());
         double median = 0.0;
-        if((array.length % 2) == 0){
+        if((ints.size() % 2) == 0){
             // array length is even
-            median = (array[array.length/2] + 
-                array[(array.length/2)-1])/2.0;
+            median = (ints.get(ints.size()/2) + 
+                ints.get((ints.size()/2)-1))/2.0;
         }
         else{
             // array length is odd
-            median = array[array.length/2];
+            median = ints.get(ints.size()/2);
         }
         return median;
     }
 
-    public int getMode(int[] arr){
-        Arrays.sort(arr);
-        int max_val = arr[arr.length-1];
+    public int getMode(ArrayList<Integer> ints){
+        Collections.sort(ints, Collections.reverseOrder());
+        int max_val = ints.get(ints.size()-1);
         int[] count = new int[max_val + 1];
         int mode = 0, max_count = 0;
         for(int i = 0; i < count.length; i++){
             count[i] = 0;
         }
-        for(int i = 0; i < arr.length; i++){
-            count[arr[i]] = count[arr[i]] + 1;
+        for(int i = 0; i < ints.size(); i++){
+            count[ints.get(i)] = count[ints.get(i)] + 1;
         }
         for(int i = 0; i < count.length; i++){
             if (count[i] > max_count) {
