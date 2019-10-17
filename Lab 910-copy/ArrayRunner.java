@@ -1,4 +1,3 @@
-
 /**
  * Uses methods from Array class
  *
