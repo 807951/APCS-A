@@ -2,6 +2,12 @@
 comment0.target=Algorithim
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
-comment2.params=nums\ numOfElements
-comment2.target=void\ loadArray(java.util.ArrayList,\ int)
-numComments=3
+comment2.params=nums
+comment2.target=java.util.ArrayList\ bubbleSortArrayList(java.util.ArrayList)
+comment3.params=nums\ numOfElements
+comment3.target=void\ loadArrayList(java.util.ArrayList,\ int)
+comment4.params=nums
+comment4.target=java.util.ArrayList\ bubbleSortArray(java.util.ArrayList)
+comment5.params=nums\ numOfElements
+comment5.target=void\ loadArray(int[],\ int)
+numComments=6
