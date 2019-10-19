@@ -6,8 +6,7 @@ comment2.params=nums
 comment2.target=java.util.ArrayList\ bubbleSortArrayList(java.util.ArrayList)
 comment3.params=nums\ numOfElements
 comment3.target=void\ loadArrayList(java.util.ArrayList,\ int)
-comment4.params=nums
-comment4.target=java.util.ArrayList\ bubbleSortArray(java.util.ArrayList)
-comment5.params=nums\ numOfElements
-comment5.target=void\ loadArray(int[],\ int)
-numComments=6
+comment4.params=nums\ numOfElements
+comment4.target=void\ loadArray(int[],\ int)
+comment4.text=public\ static\ ArrayList<Integer>\ bubbleSortArray(int[]\ nums){\r\n\ \ \ \ \ \ \ \ loadArray(nums,\ 10);\r\n\ \ \ \ \ \ \ \ for(int\ i\ \=\ nums.length;\ i\ >\ 0;\ i--){\r\n\ \ \ \ \ \ \ \ \ \ \ \ for(int\ j\ \=\ 0;\ j\ <\ nums.length-1;\ j++){\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(nums.get(j)\ >\ nums.get(j+1)){\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int\ n\ \=\ nums.ge[j]);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nums.set(j,\ nums.get(j+1));\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nums.set(j+1,\ n);\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ return\ nums;\r\n}
+numComments=5
