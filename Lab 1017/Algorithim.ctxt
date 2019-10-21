@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Algorithim
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment2.params=nums\ numOfElements
-comment2.target=void\ loadArray(java.util.ArrayList,\ int)
-numComments=3
