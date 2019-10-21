@@ -19,21 +19,7 @@ public class SelectionSort
         return nums;
     }
 
-    public static ArrayList<Integer> selectionSort(ArrayList<Integer> nums){
-        for (int i = 0; i < nums.size()-1; i++) 
-        { 
-            int minIndex = i; 
-            for (int j = i+1; j < nums.size(); j++){
-                if (nums.get(j) < nums.get(minIndex)){
-                    minIndex = j; 
-                }
-            }
-            int n = nums.get(minIndex); 
-            nums.set(minIndex, nums.get(i)); 
-            nums.set(i, n); 
-        } 
-        return nums;
-    }
+    
 
     public static void selectionSort(int[] arr){
         for (int i = 0; i < arr.length - 1; i++) 
