@@ -76,8 +76,7 @@ public class SortTester
                     arr.set(j - 1, temp);
                     swaps++;
                     compares++;
-                }
-                else{
+                }else{
                     compares++;
                 }
             }
@@ -85,30 +84,30 @@ public class SortTester
         double finish = System.nanoTime();
         timeElapsed = ((finish - start)/1000000000);
     }
-
+    
     public static void printList(ArrayList<Integer> arr){
         System.out.println(arr);
     } 
 
     public static void main(String[] args){
-        loadNumbers(numList, 10);
+        loadNumbers(numList, 10000);
         bubbleSort(numList);
         printList(numList);
-        System.out.println("Swaps: " + swaps  + ", Compares: " + compares 
+        System.out.println("Bubble Sort: Swaps: " + swaps  + ", Compares: " + compares 
             + ", Time Elapsed in milliseconds: " + timeElapsed);
         numList.clear();
 
-        loadNumbers(numList, 10);
+        loadNumbers(numList, 10000);
         selectSort(numList);
         printList(numList);
-        System.out.println("Swaps: " + swaps  + ", Compares: " + compares 
+        System.out.println("Select Sort: Swaps: " + swaps  + ", Compares: " + compares 
             + ", Time Elapsed in milliseconds: " + timeElapsed);
         numList.clear();
 
-        loadNumbers(numList, 10);
+        loadNumbers(numList, 10000);
         insertSort(numList);
         printList(numList);
-        System.out.println("Swaps: " + swaps  + ", Compares: " + compares 
+        System.out.println("Insert Sort: Swaps: " + swaps  + ", Compares: " + compares 
             + ", Time Elapsed in milliseconds: " + timeElapsed);
         numList.clear();
     }

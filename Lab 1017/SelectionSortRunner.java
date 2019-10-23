@@ -15,7 +15,7 @@ public class SelectionSortRunner
         // selection sort with ArrayLists
         ss.loadArray(nums, 10);
         ss.beforeSort(nums);
-        ss.selectionSort(nums);
+        //ss.selectionSort(nums);
         ss.afterSort(nums);
         
         // selection sort with arrays
