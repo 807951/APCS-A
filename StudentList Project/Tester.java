@@ -32,6 +32,10 @@ public class Tester
         return result;
     }
     public static void main(){
-        System.out.print(test(1.2555));
+        System.out.println(test(1.2555));
+        System.out.println(test(1.2565));
+        System.out.println(test(1.2575));
+        System.out.println(test(1.2585));
+        System.out.println(test(1.2595));
     }
 }
