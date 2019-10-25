@@ -8,9 +8,13 @@ public class Student
     private String fName;
     private String mName;
     private String lName;
-    private String fullName;
     private int stuNumber;
     private double gpa; 
+    public Student(String fullName, double gpa, int stuNumber){
+        this.gpa = gpa;
+        this.stuNumber = stuNumber;
+    }
+
     public double refineGPA(double d){
         String gpa = Double.toString(d);
         int decimalIndex = gpa.indexOf(".");
@@ -46,20 +50,61 @@ public class Student
         }
         return result;
     }
-    
+
+    public void parseUserInput(String userName){
+        String[] arr = userName.split(" "); 
+        int commaIndex = arr[0].indexOf(',');
+        label:
+        if(arr.length < 2 || arr.length > 3){
+            System.out.println("Looks like you entered the name in the wrong format!");
+            break label;
+        }
+        else{
+            if(arr.length == 3){
+                if(commaIndex != -1){
+                    arr[0] = arr[0].substring(0, commaIndex);
+                    setFName(arr[2]);
+                    setMName(arr[1]);
+                    setLName(arr[0]);
+                }
+                else if(commaIndex == -1){
+                    setFName(arr[0]);
+                    setMName(arr[1]);
+                    setLName(arr[2]);
+                }
+            }
+            else if(arr.length == 2){
+                if(commaIndex != -1){
+                    arr[0] = arr[0].substring(0, commaIndex);
+                    setFName(arr[1]);
+                    setLName(arr[0]);
+                    setMName("");
+                }
+                else if(commaIndex == -1){
+                    setFName(arr[0]);
+                    setLName(arr[1]);
+                    setMName("");               
+                }
+            }
+        }
+    }
     //getters
     public String getFullName(){
         return lName +", " + fName + " " + mName;
     }
+
     public String getLName(){
         return lName;
     }
+
     public String getMName(){
         return mName;
     }
+
     public String getFName(){
         return fName;
     }
+
     public double getGPA(){
         return gpa;
     }
@@ -67,12 +112,12 @@ public class Student
     public int getStuNumber(){
         return stuNumber;
     }
-    
+
     //setters
     public void setStuNumber(int stuNumber){
         this.stuNumber = refineStuNumber(stuNumber);
     }
-  
+
     public void setFName(String fName){
         this.fName = fName.trim();
     }
@@ -84,8 +129,9 @@ public class Student
     public void setMName(String mName){
         this.mName = mName.trim();
     }
+
     public void setGPA(double d){
         gpa = refineGPA(d);
     }
-   
+
 }
