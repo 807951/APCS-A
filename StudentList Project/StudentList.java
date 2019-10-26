@@ -205,4 +205,27 @@ public class StudentList
     public void clearList(){
         students.clear();
     }
+
+    public void sortByLastName() 
+    { 
+        int n = students.size();
+        for (int j=0; j<n-1; j++) 
+        { 
+            for (int i=j+1; i<n; i++) 
+            { 
+                int index = 0;
+                if (strcmp(students.get(j).getLName(), students.get(i).getLName) > 0) 
+                { 
+                    index = i;
+                    Student s = students.get(index);
+                    students.add(j, s);
+                    students.add(index, student)
+                    strcpy(temp, arr[j]); 
+                    strcpy(arr[j], arr[i]); 
+                    strcpy(arr[i], temp); 
+                } 
+            } 
+        } 
+
+    } 
 }
