@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=StudentList
-comment1.params=s
-comment1.target=void\ addStudent(Student)
-comment2.params=str
-comment2.target=void\ deleteStudent(java.lang.String)
-numComments=3
