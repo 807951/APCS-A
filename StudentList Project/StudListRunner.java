@@ -2,9 +2,7 @@
  * runs student list program
  * @author (Arin Gadre)
  * @version (1024)
- *
  */
-import java.io.IOException;
 import java.util.Scanner;
 public class StudListRunner
 {
@@ -38,15 +36,11 @@ public class StudListRunner
                 System.out.println("Format 3: Last, First Middle ");
                 System.out.println("Format 4: Last, First");
                 System.out.println("Enter the student's name  in one of these these 4 formats:  ");
-
                 String name = sc.nextLine();
-
                 System.out.println("Enter the student's number or ID:  ");
                 int id = sc.nextInt();
-
                 System.out.println("Enter the student's gpa ");
                 double gpa = sc.nextDouble();       
-
                 sl.addStudent(name, gpa, id);
                 break;
 
@@ -105,15 +99,19 @@ public class StudListRunner
                 sl.printList();
                 break;
 
+                case "5":
+                break;
+
                 case "6":
                 System.out.print('\u000C');
                 sl.clearList();
                 break;
+
                 default :
                 System.out.println("Error");
                 break;
             }
-            
+
         } while(!statement.equals("q"));
         System.out.println("program ended");
     }

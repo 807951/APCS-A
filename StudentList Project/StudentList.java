@@ -121,7 +121,7 @@ public class StudentList
     public void deleteStudentFromList(int stuNum){
         boolean check = false;
         int temp = 0;
-        for(int i = 0; (i < students.size()) || (check == true); i++){
+        for(int i = 0; (i < students.size()) && (check == false); i++){
             if(students.get(i).getStuNumber() == stuNum){
                 check = true;
                 temp = i;
@@ -206,26 +206,26 @@ public class StudentList
         students.clear();
     }
 
-    public void sortByLastName() 
-    { 
-        int n = students.size();
-        for (int j=0; j<n-1; j++) 
-        { 
-            for (int i=j+1; i<n; i++) 
-            { 
-                int index = 0;
-                if (strcmp(students.get(j).getLName(), students.get(i).getLName) > 0) 
-                { 
-                    index = i;
-                    Student s = students.get(index);
-                    students.add(j, s);
-                    students.add(index, student)
-                    strcpy(temp, arr[j]); 
-                    strcpy(arr[j], arr[i]); 
-                    strcpy(arr[i], temp); 
-                } 
-            } 
-        } 
+    public void editStudentList(String lName){
+        //:: Allows the user to specify a student name and then update or change the Student name and GPA
+        boolean check = false;
+        int temp = 0;
+        for(int i = 0; ((i < students.size()) && (check == false)); i++){
+            if(students.get(i).getLName().equals(lName.trim())){
+                check = true;
+                temp = i;
+            }
+        }
+        if(check == true){
+            students.remove(temp);
+            // put conditon from add student in studlist runner class
+        }else{
+            System.out.println("Student does not exist. Try searching with the student's ID number.");
+        }
+    }
 
-    } 
+    public void editStudentList(int stuNumber){
+        //:: Allows the user to specify a Student number and then update or change the Student name and GPA
+
+    }   
 }
