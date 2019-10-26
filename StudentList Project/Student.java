@@ -10,6 +10,9 @@ public class Student
     private String lName;
     private int stuNumber;
     private double gpa; 
+    public Student(){
+        
+    }
     public Student(String fullName, double gpa, int stuNumber){
         this.gpa = gpa;
         this.stuNumber = stuNumber;
