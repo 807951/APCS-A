@@ -207,7 +207,7 @@ public class StudentList
     }
 
     public void editStudentList(String lName){
-        //:: Allows the user to specify a student name and then update or change the Student name and GPA
+        // Allows the user to specify a student name and then update or change the Student name and GPA
         boolean check = false;
         int temp = 0;
         for(int i = 0; ((i < students.size()) && (check == false)); i++){
