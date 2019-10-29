@@ -69,7 +69,7 @@ public class StudentList
     public void printStudent(int stuNum){
         boolean check = false;
         int temp = 0;
-        for(int i = 0; (i < students.size()) || (check == true); i++){
+        for(int i = 0; (i < students.size()) && (check == false); i++){
             if(students.get(i).getStuNumber() == stuNum){
                 check = true;
                 temp = i;
@@ -87,7 +87,7 @@ public class StudentList
     public void printStudent(String lName){
         boolean check = false;
         int temp = 0;
-        for(int i = 0; (i < students.size()) || (check == true); i++){
+        for(int i = 0; (i < students.size()) && (check == false); i++){
             if(students.get(i).getLName().equals(lName.trim())){
                 check = true;
                 temp = i;
@@ -134,17 +134,17 @@ public class StudentList
         }
     }
 
-    public void filterSearchStudentListMoreThan(int num){
-        ArrayList<Student> students = new ArrayList<Student>();
+     public void filterSearchStudentListMoreThan(int num){
+        ArrayList<Student> studs = new ArrayList<Student>();
         boolean check = false;
         for(int i = 0; i < students.size(); i++){
             if(students.get(i).getStuNumber() >= num){
-                students.add(this.students.get(i));
+                studs.add(students.get(i));
                 check = true;
             }
         }
         if(check == true){
-            printList(students);
+            printList(studs);
         }
         else{
             System.out.println("Students do not exist!");
@@ -152,16 +152,16 @@ public class StudentList
     } 
 
     public void filterSearchStudentListLessThan(int num){
-        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Student> studs = new ArrayList<Student>();
         boolean check = false;
         for(int i = 0; i < students.size(); i++){
             if(students.get(i).getStuNumber() <= num){
-                students.add(this.students.get(i));
+                studs.add(students.get(i));
                 check = true;
             }
         }
         if(check == true){
-            printList(students);
+            printList(studs);
         }
         else{
             System.out.println("Students do not exist!");
@@ -169,33 +169,32 @@ public class StudentList
     }  
 
     public void filterSearchStudentListLessThan(double gpa){
-        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Student> studs = new ArrayList<Student>();
         boolean check = false;
         for(int i = 0; i < students.size(); i++){
-            if(students.get(i).getStuNumber() <= gpa){
-                students.add(this.students.get(i));
+            if(students.get(i).getStuNumber() >= gpa){
+                studs.add(students.get(i));
                 check = true;
             }
         }
         if(check == true){
-            printList(students);
+            printList(studs);
         }
         else{
             System.out.println("Students do not exist!");
         }
     } 
-
     public void filterSearchStudentListMoreThan(double gpa){
-        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Student> studs = new ArrayList<Student>();
         boolean check = false;
         for(int i = 0; i < students.size(); i++){
-            if(students.get(i).getStuNumber() >= gpa){
-                students.add(this.students.get(i));
+            if(students.get(i).getStuNumber() <= gpa){
+                studs.add(students.get(i));
                 check = true;
             }
         }
         if(check == true){
-            printList(students);
+            printList(studs);
         }
         else{
             System.out.println("Students do not exist!");
@@ -206,26 +205,90 @@ public class StudentList
         students.clear();
     }
 
-    public void editStudentList(String lName){
+    public void sortByLastName() 
+    { 
+        int n = students.size();
+        for (int j=0; j<n-1; j++) 
+        { 
+            for (int i=j+1; i<n; i++) 
+            { 
+                Student temp;
+                System.out.println(students.get(j).getLName());
+                System.out.println(students.get(i).getLName());
+                if (students.get(j).getLName().compareTo(students.get(i).getLName()) > 0) 
+                { 
+                    temp = students.get(j); 
+                    students.set(j, students.get(i)); 
+                    students.set(i, temp);
+                } 
+            } 
+        } 
+    }
+    public void sortByStuNumber(){
+        for (int i = 0; i < students.size(); i++) {
+            // find position of smallest num between (i + 1)th element and last element
+            int pos = i;
+            for (int j = i; j < students.size(); j++) {
+                if (students.get(j).getStuNumber() < students.get(pos).getStuNumber())
+                    pos = j;
+            }
+            // Swap min (smallest num) to current position on array
+            Student min = students.get(pos);
+            students.set(pos, students.get(i));
+            students.set(i, min);
+        }
+    }
+    public void editStudentList(String lName, double gpa, String fullName){
         // Allows the user to specify a student name and then update or change the Student name and GPA
         boolean check = false;
         int temp = 0;
+        String[] str = fullName.split(" ");
         for(int i = 0; ((i < students.size()) && (check == false)); i++){
             if(students.get(i).getLName().equals(lName.trim())){
                 check = true;
                 temp = i;
             }
         }
-        if(check == true){
-            students.remove(temp);
-            // put conditon from add student in studlist runner class
-        }else{
-            System.out.println("Student does not exist. Try searching with the student's ID number.");
+        testName:
+        if(str.length > 3 || str.length < 2){
+            System.out.println("Enter name in one of the 4 correct formats please.");
+            break testName;
+        }
+        else{
+            if(check == true){
+                students.get(temp).setGPA(gpa);
+                parseUserInput(fullName.trim(), students.get(temp));
+                // put conditon from add student in studlist runner class
+            }else{
+                System.out.println("Student does not exist. Try searching with the student's ID number or try again.");
+            }
         }
     }
 
-    public void editStudentList(int stuNumber){
+    public void editStudentList(int stuNumber, double gpa, String fullName){
         //:: Allows the user to specify a Student number and then update or change the Student name and GPA
-
+        boolean check = false;
+        int temp = 0;
+        String[] str = fullName.split(" ");
+        for(int i = 0; ((i < students.size()) && (check == false)); i++){
+            if(students.get(i).getStuNumber() == stuNumber){
+                check = true;
+                temp = i;
+            }
+        }
+        testName:
+        if(str.length > 3 || str.length < 2){
+            System.out.println("Enter name in one of the 4 correct formats please.");
+            break testName;
+        }
+        else{
+            if(check == true){
+                students.get(temp).setGPA(gpa);
+                parseUserInput(fullName.trim(), students.get(temp));
+                // put conditon from add student in studlist runner class
+            }else{
+                System.out.println("Student does not exist. Try searching with the student's last name or try again.");
+            }
+        }
     }   
 }

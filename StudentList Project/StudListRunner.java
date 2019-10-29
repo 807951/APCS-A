@@ -23,10 +23,10 @@ public class StudListRunner
             System.out.println("2 delete student record");
             System.out.println("3 print a student record of one specific student");
             System.out.println("4 print all student records");
-            System.out.println("5 search for a student by name or student number");
+            System.out.println("5 edit the information of a student");
             System.out.println("6 clear delete all students from the record");
             System.out.println("press q for quit");
-            statement = sc.nextLine();
+            statement = sc.nextLine().trim();
             int i = 0;
             switch(statement){
                 case "1":
@@ -65,7 +65,7 @@ public class StudListRunner
                     break;
 
                     default:
-                    System.out.println("Error");
+                    System.out.println("Please try again.");
                     break;
                 }
                 break;
@@ -80,7 +80,7 @@ public class StudListRunner
                 switch(i){
                     case 1:
                     System.out.print("Enter the student's last name: ");
-                    statement = sc.nextLine();
+                    statement = sc.nextLine().trim();
                     sl.printStudent(statement);
                     break;
 
@@ -89,7 +89,7 @@ public class StudListRunner
                     break;
 
                     default:
-                    System.out.print("Error");
+                    System.out.print("Please try again");
                     break;
                 }
                 break;
@@ -100,6 +100,40 @@ public class StudListRunner
                 break;
 
                 case "5":
+                System.out.print('\u000C');
+                System.out.println("Enter 1 to change a student by their last name.");
+                System.out.println("Enter 2 to change a student by their ID number");
+                i = sc.nextInt();
+                sc.nextLine();
+                switch(i){
+                    case 1:
+                    System.out.println("Enter the student's last name: ");
+                    name = sc.nextLine().trim();
+                    System.out.println("Enter the student's new gpa: ");
+                    gpa = sc.nextDouble();
+                    sc.nextLine();
+                    System.out.println("Enter the student's revised name: ");
+                    String newName = sc.nextLine().trim();
+                    sl.editStudentList(name, gpa, newName);
+                    break;
+
+                    case 2: 
+                    System.out.println("Enter the student's ID number ");
+                    int stuNumber = sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Enter the student's new gpa: ");
+                    gpa = sc.nextDouble();
+                    sc.nextLine();
+                    System.out.println("Enter the student's revised name: ");
+                    newName = sc.nextLine().trim();
+                    
+                    sl.editStudentList(stuNumber, gpa, newName);
+                    break;
+
+                    default:
+                    System.out.println("Please try again.");
+                    break;
+                }
                 break;
 
                 case "6":
@@ -111,7 +145,9 @@ public class StudListRunner
                 System.out.println("Error");
                 break;
             }
-
+            if(!statement.equals("4")){
+                System.out.print('\u000C');
+            }
         } while(!statement.equals("q"));
         System.out.println("program ended");
     }

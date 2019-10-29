@@ -1,9 +1,13 @@
 #BlueJ class context
 comment0.target=Tester
 comment1.params=
-comment1.target=void\ sortByLastName()
+comment1.target=void\ main()
 comment2.params=
 comment2.target=void\ printList()
-comment3.params=
-comment3.target=void\ main()
-numComments=4
+comment3.params=userName\ s
+comment3.target=void\ parseUserInput(java.lang.String,\ Student)
+comment4.params=fullName\ gpa\ stuNum
+comment4.target=void\ addStudent(java.lang.String,\ double,\ int)
+comment5.params=students
+comment5.target=void\ printList(java.util.ArrayList)
+numComments=6
