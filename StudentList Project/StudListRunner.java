@@ -25,8 +25,11 @@ public class StudListRunner
             System.out.println("4 print all student records");
             System.out.println("5 edit the information of a student");
             System.out.println("6 clear delete all students from the record");
+            System.out.println("7 search by filtering");
+            System.out.println("8 sort the students");
             System.out.println("press q for quit");
             statement = sc.nextLine().trim();
+            String keepScreen = statement;
             int i = 0;
             switch(statement){
                 case "1":
@@ -53,15 +56,13 @@ public class StudListRunner
                 switch(i){
                     case 1:
                     System.out.print("Enter the student's last name: ");    
-                    statement = sc.nextLine(); 
-                    System.out.println("test: " + statement);
-                    sl.deleteStudentFromList(statement.trim());
+                    sl.deleteStudentFromList(sc.nextLine().trim());
                     break;
 
                     case 2:
                     System.out.print("Enter the student's ID number: ");   
-                    i = sc.nextInt(); 
-                    sl.deleteStudentFromList(i);
+                    sl.deleteStudentFromList(sc.nextInt());
+                    sc.nextLine();
                     break;
 
                     default:
@@ -71,7 +72,6 @@ public class StudListRunner
                 break;
 
                 case "3":
-                System.out.print('\u000C');
                 System.out.println();
                 System.out.println("Press 1 to print the student info using the student's last name.");
                 System.out.println("Press 2 to print the student info using the student's ID number.");
@@ -80,12 +80,13 @@ public class StudListRunner
                 switch(i){
                     case 1:
                     System.out.print("Enter the student's last name: ");
-                    statement = sc.nextLine().trim();
-                    sl.printStudent(statement);
+                    sl.printStudent(sc.nextLine().trim());
                     break;
 
                     case 2:
-                    System.out.println("Enter the student's last name: ");
+                    System.out.println("Enter the student's ID number: ");
+                    sl.printStudent(sc.nextInt());
+                    sc.nextLine();
                     break;
 
                     default:
@@ -95,7 +96,6 @@ public class StudListRunner
                 break;
 
                 case "4":
-                System.out.print('\u000C');
                 sl.printList();
                 break;
 
@@ -126,7 +126,7 @@ public class StudListRunner
                     sc.nextLine();
                     System.out.println("Enter the student's revised name: ");
                     newName = sc.nextLine().trim();
-                    
+
                     sl.editStudentList(stuNumber, gpa, newName);
                     break;
 
@@ -141,11 +141,64 @@ public class StudListRunner
                 sl.clearList();
                 break;
 
+                case "7":
+                System.out.println("Enter 1 to find all students that have a gpa less than or equal to what you will enter.");
+                System.out.println("Enter 2 to find all students that have a gpa more than or equal to what you will enter.");
+                System.out.println("Enter 3 to find all students that have a student ID number less than or equal to what you will enter.");
+                System.out.println("Enter 4 to find all students that have a student ID number more than than or equal to what you will enter.");
+                i = sc.nextInt();
+                sc.nextLine();
+                switch(i){
+                    case 1:
+                    System.out.println("Enter in the gpa to filter the results: ");
+                    sl.filterSearchStudentListLessThan(sc.nextDouble());
+                    sc.nextLine();
+                    break;
+                    
+                    case 2:
+                    System.out.println("Enter in the gpa to filter the results: ");
+                    sl.filterSearchStudentListMoreThan(sc.nextDouble());
+                    sc.nextLine();
+                    break;
+                    
+                    case 3:
+                    System.out.println("Enter in the student ID number to filter the results: ");
+                    sl.filterSearchStudentListLessThan(sc.nextInt());
+                    sc.nextLine();
+                    break;
+                    
+                    case 4:
+                    System.out.println("Enter in the gpa to filter the results: ");
+                    sl.filterSearchStudentListMoreThan(sc.nextInt());
+                    sc.nextLine();
+                    
+                    default:
+                    System.out.println("Please try again, and enter a number 1 through 4");
+                }
+                break;
+                
+                case "8":
+                
+                System.out.println("Enter 1 to sort the students based on last name");
+                System.out.println("Enter 2 to sort the students based on their ID number");
+                if(sc.nextInt() == 1){
+                  sl.sortByLastName();
+                }
+                else if(sc.nextInt() == 2){
+                    sl.sortByStuNumber();
+                }
+                else{
+                    System.out.println("Please try again, and try to enter 1 or 2");
+                }
+                sc.nextLine();
+                break;
+                
                 default :
-                System.out.println("Error");
+                System.out.println("Enter a whole number 1 through 8 to try again.");
                 break;
             }
-            if(!statement.equals("4")){
+            if(!keepScreen.equals("4") || !keepScreen.equals("3") 
+            || !keepScreen.equals("7")){
                 System.out.print('\u000C');
             }
         } while(!statement.equals("q"));
