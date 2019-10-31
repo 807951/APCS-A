@@ -9,7 +9,7 @@ public class Student
     private String mName;
     private String lName;
     private int stuNumber;
-    private double gpa; 
+    private double gpa;
     public Student(String fullName, double gpa, int stuNumber){
         this.gpa = gpa;
         this.stuNumber = stuNumber;

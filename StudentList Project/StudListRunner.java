@@ -10,14 +10,17 @@ public class StudListRunner
         menuNumber();
         StudentList sl = new StudentList();
         sl.printList();
-    } 
+    }
 
     public static void menuNumber(){
         StudentList sl = new StudentList();
         Scanner sc = new Scanner(System.in);
         String statement;
-        do{ 
+        boolean keepScreen = false;
+        do{
             System.out.println();
+            if(keepScreen == false)
+                System.out.print('\u000C');
             System.out.println("Main Menu:");
             System.out.println("1 add a new student record");
             System.out.println("2 delete student record");
@@ -29,11 +32,10 @@ public class StudListRunner
             System.out.println("8 sort the students");
             System.out.println("press q for quit");
             statement = sc.nextLine().trim();
-            String keepScreen = statement;
             int i = 0;
             switch(statement){
                 case "1":
-                System.out.print('\u000C');                
+                System.out.print('\u000C');
                 System.out.println("Format 1: First Middle Last");
                 System.out.println("Format 2: First Last");
                 System.out.println("Format 3: Last, First Middle ");
@@ -42,9 +44,12 @@ public class StudListRunner
                 String name = sc.nextLine();
                 System.out.println("Enter the student's number or ID:  ");
                 int id = sc.nextInt();
+                sc.nextLine();
                 System.out.println("Enter the student's gpa ");
-                double gpa = sc.nextDouble();       
+                double gpa = sc.nextDouble();
+                sc.nextLine();
                 sl.addStudent(name, gpa, id);
+                System.out.print('\u000C');
                 break;
 
                 case "2":
@@ -55,12 +60,12 @@ public class StudListRunner
                 sc.nextLine();
                 switch(i){
                     case 1:
-                    System.out.print("Enter the student's last name: ");    
+                    System.out.print("Enter the student's last name: ");
                     sl.deleteStudentFromList(sc.nextLine().trim());
                     break;
 
                     case 2:
-                    System.out.print("Enter the student's ID number: ");   
+                    System.out.print("Enter the student's ID number: ");
                     sl.deleteStudentFromList(sc.nextInt());
                     sc.nextLine();
                     break;
@@ -69,9 +74,11 @@ public class StudListRunner
                     System.out.println("Please try again.");
                     break;
                 }
+                System.out.print('\u000C');
                 break;
 
                 case "3":
+                keepScreen = true;
                 System.out.println();
                 System.out.println("Press 1 to print the student info using the student's last name.");
                 System.out.println("Press 2 to print the student info using the student's ID number.");
@@ -97,12 +104,13 @@ public class StudListRunner
 
                 case "4":
                 sl.printList();
+                keepScreen = true;
                 break;
 
                 case "5":
                 System.out.print('\u000C');
-                System.out.println("Enter 1 to change a student by their last name.");
-                System.out.println("Enter 2 to change a student by their ID number");
+                System.out.println("Enter 1 to change a student bytheir last name.");
+                System.out.println("Enter 2 to change a student bytheir ID number");
                 i = sc.nextInt();
                 sc.nextLine();
                 switch(i){
@@ -117,7 +125,7 @@ public class StudListRunner
                     sl.editStudentList(name, gpa, newName);
                     break;
 
-                    case 2: 
+                    case 2:
                     System.out.println("Enter the student's ID number ");
                     int stuNumber = sc.nextInt();
                     sc.nextLine();
@@ -134,18 +142,21 @@ public class StudListRunner
                     System.out.println("Please try again.");
                     break;
                 }
+                System.out.print('\u000C');
                 break;
 
                 case "6":
                 System.out.print('\u000C');
                 sl.clearList();
+                System.out.print('\u000C');
                 break;
 
                 case "7":
+                keepScreen = true;
                 System.out.println("Enter 1 to find all students that have a gpa less than or equal to what you will enter.");
                 System.out.println("Enter 2 to find all students that have a gpa more than or equal to what you will enter.");
                 System.out.println("Enter 3 to find all students that have a student ID number less than or equal to what you will enter.");
-                System.out.println("Enter 4 to find all students that have a student ID number more than than or equal to what you will enter.");
+                System.out.println("Enter 4 to find all students that have a student ID number more than than or equal to what you willenter.");
                 i = sc.nextInt();
                 sc.nextLine();
                 switch(i){
@@ -154,35 +165,35 @@ public class StudListRunner
                     sl.filterSearchStudentListLessThan(sc.nextDouble());
                     sc.nextLine();
                     break;
-                    
+
                     case 2:
                     System.out.println("Enter in the gpa to filter the results: ");
                     sl.filterSearchStudentListMoreThan(sc.nextDouble());
                     sc.nextLine();
                     break;
-                    
+
                     case 3:
                     System.out.println("Enter in the student ID number to filter the results: ");
                     sl.filterSearchStudentListLessThan(sc.nextInt());
                     sc.nextLine();
                     break;
-                    
+
                     case 4:
                     System.out.println("Enter in the gpa to filter the results: ");
                     sl.filterSearchStudentListMoreThan(sc.nextInt());
                     sc.nextLine();
-                    
+
                     default:
                     System.out.println("Please try again, and enter a number 1 through 4");
                 }
                 break;
-                
+
                 case "8":
-                
+                System.out.print('\u000C');
                 System.out.println("Enter 1 to sort the students based on last name");
                 System.out.println("Enter 2 to sort the students based on their ID number");
                 if(sc.nextInt() == 1){
-                  sl.sortByLastName();
+                    sl.sortByLastName();
                 }
                 else if(sc.nextInt() == 2){
                     sl.sortByStuNumber();
@@ -191,14 +202,14 @@ public class StudListRunner
                     System.out.println("Please try again, and try to enter 1 or 2");
                 }
                 sc.nextLine();
+                System.out.print('\u000C');
                 break;
-                
+
                 default :
                 System.out.println("Enter a whole number 1 through 8 to try again.");
                 break;
             }
-            if(!keepScreen.equals("4") || !keepScreen.equals("3") 
-            || !keepScreen.equals("7")){
+            if(keepScreen ==  false){
                 System.out.print('\u000C');
             }
         } while(!statement.equals("q"));
