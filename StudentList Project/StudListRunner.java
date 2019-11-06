@@ -109,8 +109,8 @@ public class StudListRunner
 
                 case "5":
                 System.out.print('\u000C');
-                System.out.println("Enter 1 to change a student bytheir last name.");
-                System.out.println("Enter 2 to change a student bytheir ID number");
+                System.out.println("Enter 1 to change a student by their last name.");
+                System.out.println("Enter 2 to change a student by their ID number");
                 i = sc.nextInt();
                 sc.nextLine();
                 switch(i){
@@ -156,7 +156,7 @@ public class StudListRunner
                 System.out.println("Enter 1 to find all students that have a gpa less than or equal to what you will enter.");
                 System.out.println("Enter 2 to find all students that have a gpa more than or equal to what you will enter.");
                 System.out.println("Enter 3 to find all students that have a student ID number less than or equal to what you will enter.");
-                System.out.println("Enter 4 to find all students that have a student ID number more than than or equal to what you willenter.");
+                System.out.println("Enter 4 to find all students that have a student ID number more than than or equal to what you will enter.");
                 i = sc.nextInt();
                 sc.nextLine();
                 switch(i){
