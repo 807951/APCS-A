@@ -1,7 +1,7 @@
 /**
- * Write a description of class Student here.
+ * has student getters ans setter and parseUserInput
  * @author (Arin Gadre)
- * @version (1024)
+ * @version (1108)
  */
 public class Student
 {
@@ -13,6 +13,7 @@ public class Student
     public Student(String fullName, double gpa, int stuNumber){
         this.gpa = gpa;
         this.stuNumber = stuNumber;
+        parseUserInput(fullName.trim());
     }
     //getters
     public String getFullName(){
@@ -60,4 +61,38 @@ public class Student
         this.gpa = gpa;
     }
 
+    // parseUserInput
+    public void parseUserInput(String userName){
+        String[] arr = userName.split(" ");
+        int commaIndex = arr[0].indexOf(',');
+        if(arr.length > 4 || arr.length < 2){
+            System.out.println("Name was entered in the wrong format.");
+        }else if(arr.length == 3){
+            if(commaIndex == -1){  //
+                // comma index = -1 means there is no comma in the name
+                setFName(arr[0]);
+                setMName(arr[1]);
+                setLName(arr[2]);
+            }
+            else{
+                arr[0] = arr[0].substring(0, commaIndex);
+                setFName(arr[2]);
+                setMName(arr[1]);
+                setLName(arr[0]);
+            }
+        }else{
+            if(commaIndex == -1){
+                // comma index = -1 means there is no comma in the name
+                setFName(arr[0]);
+                setLName(arr[1]);
+                setMName("");
+            }
+            else{
+                arr[0] = arr[0].substring(0, commaIndex);
+                setFName(arr[1]);
+                setLName(arr[0]);
+                setMName("");
+            }
+        }
+    }
 }

@@ -8,9 +8,7 @@ public class StudentList
 {
     private ArrayList<Student> students = new ArrayList<Student>();
     public void addStudent(String fullName, double gpa, int stuNum){
-        Student s = new Student(fullName, gpa, stuNum);
-        parseUserInput(fullName, s);
-        students.add(s);
+        students.add(new Student(fullName, gpa, stuNum));
     }
 
     public void printList(ArrayList<Student> students){
@@ -30,40 +28,6 @@ public class StudentList
             System.out.println(" Student gpa: " + students.get(i).getGPA());
             System.out.println(" Student number: " +
                 students.get(i).getStuNumber());
-        }
-    }
-
-    public void parseUserInput(String userName, Student s){
-        String[] arr = userName.split(" ");
-        int commaIndex = arr[0].indexOf(',');
-        if(arr.length > 4 || arr.length < 2){
-            System.out.println("Name was entered in the wrong format.");
-        }else if(arr.length == 3){
-            if(commaIndex == -1){  //
-                // comma index = -1 means there is no comma in the name
-                s.setFName(arr[0]);
-                s.setMName(arr[1]);
-                s.setLName(arr[2]);
-            }
-            else{
-                arr[0] = arr[0].substring(0, commaIndex);
-                s.setFName(arr[2]);
-                s.setMName(arr[1]);
-                s.setLName(arr[0]);
-            }
-        }else{
-            if(commaIndex == -1){
-                // comma index = -1 means there is no comma in the name
-                s.setFName(arr[0]);
-                s.setLName(arr[1]);
-                s.setMName("");
-            }
-            else{
-                arr[0] = arr[0].substring(0, commaIndex);
-                s.setFName(arr[1]);
-                s.setLName(arr[0]);
-                s.setMName("");
-            }
         }
     }
 
@@ -242,17 +206,18 @@ public class StudentList
         }
     }
 
-    public void editStudentList(String lName, double gpa, String fullName){
+   public void editStudentList(String lName, double gpa, String fullName){
         // Allows the user to specify a student name and then update or change the Student name and GPA
         boolean check = false;
         int temp = 0;
         String[] str = fullName.split(" ");
-        for(int i = 0; ((i < students.size()) && (check == false)); i++){
+        for(int i = 0; i < students.size(); i++){
             if(students.get(i).getLName().equals(lName.trim())){
                 check = true;
                 temp = i;
             }
         }
+        Student s = students.get(temp);
         testName:
         if(str.length > 3 || str.length < 2){
             System.out.println("Enter name in one of the 4 correct formats please.");
@@ -260,16 +225,15 @@ public class StudentList
         }
         else{
             if(check == true){
-                students.get(temp).setGPA(gpa);
-                parseUserInput(fullName.trim(), students.get(temp));
-                // put conditon from add student in studlist runner class
+                students.remove(temp);
+                students.add(temp, new Student(fullName, gpa, s.getStuNumber()));
             }else{
                 System.out.println("Student does not exist. Try searching with the student's ID number or try again.");
             }
         }
     }
 
-    public void editStudentList(int stuNumber, double gpa, String fullName){
+   public void editStudentList(int stuNumber, double gpa, String fullName){
         //:: Allows the user to specify a Student number and thenupdate or change the Student name and GPA
         boolean check = false;
         int temp = 0;
@@ -280,6 +244,7 @@ public class StudentList
                 temp = i;
             }
         }
+        Student s = students.get(temp);
         testName:
         if(str.length > 3 || str.length < 2){
             System.out.println("Enter name in one of the 4 correct formats please.");
@@ -287,9 +252,8 @@ public class StudentList
         }
         else{
             if(check == true){
-                students.get(temp).setGPA(gpa);
-                parseUserInput(fullName.trim(), students.get(temp));
-                // put conditon from add student in studlist runner class
+                students.remove(temp);
+                students.add(temp, new Student(fullName, gpa, stuNumber));
             }else{
                 System.out.println("Student does not exist. Try searching with the student's last name or try again.");
             }

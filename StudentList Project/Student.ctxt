@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Student
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Student\ here.\r\n\ @author\ (Arin\ Gadre)\r\n\ @version\ (1024)\r\n
+comment0.text=\r\n\ has\ student\ getters\ ans\ setter\ and\ parseUserInput\r\n\ @author\ (Arin\ Gadre)\r\n\ @version\ (1108)\r\n
 comment1.params=fullName\ gpa\ stuNumber
 comment1.target=Student(java.lang.String,\ double,\ int)
 comment10.params=lName
@@ -9,6 +9,8 @@ comment11.params=mName
 comment11.target=void\ setMName(java.lang.String)
 comment12.params=gpa
 comment12.target=void\ setGPA(double)
+comment13.params=userName
+comment13.target=void\ parseUserInput(java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ getFullName()
 comment3.params=
@@ -25,4 +27,4 @@ comment8.params=stuNumber
 comment8.target=void\ setStuNumber(int)
 comment9.params=fName
 comment9.target=void\ setFName(java.lang.String)
-numComments=13
+numComments=14
