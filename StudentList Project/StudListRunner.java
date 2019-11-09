@@ -19,58 +19,71 @@ public class StudListRunner
     private static int stuNum = 0;
     public static void main(){
         menuNumber();
-        StudentList sl = new StudentList();
-        sl.printList();
     }
 
     public static void menuNumber(){
         do{
-            out.println("1 add a new student record" +
-                        "2 delete a student record" +
-                        "3 print a specific student" +
-                        "4 print out all student records" +
-                        "5 delete a specific student from the record" +
-                        "6 delete all students from the record" +
-                        "press q to exit the program");
+            out.println();
+            out.println("1 add a new student record");
+            out.println("2 delete a student record");
+            out.println("3 print a specific student");
+            out.println("4 print out all student records");
+            out.println("5 delete all students from the record");
+            out.println("press quit to exit the program");
+            out.println("After an action is completed, enter any character to return to the main menu");
             try{
                 out.print("Enter selection:  ");
                 statement = sc.nextLine().trim();
                 System.out.println();
-                switch(statement){
-                    case "1":
-                    optionOne();
-                    break;
-
-                    case "2":
-                    optionTwo();
-                    break;
-                    
-                    case "3":
-                    optionThree();
-                    break;
-                    
-                    
-                }
             }
             catch(InputMismatchException e){
                 out.println("Invalid input   -  try again");
             }
-        } while(!statement.equals("q"));
+            switch(statement){
+                case "1":
+                optionOne();
+                break;
+
+                case "2":
+                optionTwo();
+                break;
+
+                case "3":
+                optionThree();
+                break;
+
+                case "4":
+                optionFour();
+                break;
+
+                case "5":
+                optionFive();
+                break;
+
+            }
+        } while(!statement.equals("quit"));
         System.out.println("program ended");
+    }
+    // if the user chooses option 5
+    public static void optionFive(){
+        sl.clearList();
     }
     // if the user chooses option 4
     public static void optionFour(){
-        sl.printList();
+        sl.printList();        
     }
     // if the user chooses option 3
     public static void optionThree(){
-        out.println("Enter 1 to print the student record using the last name" +
-            "Enter 2 to print the student record using the student ID number");
+        boolean checkForException = false;
+        out.println();
+        out.println("Enter 1 to print the student record using the last name");
+        out.println("Enter 2 to print the student record using the student ID number");
         try{
             selection = sc.nextInt();
             sc.nextLine();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
+            checkForException = true;
         }
         switch(selection){
             case 1:
@@ -80,8 +93,10 @@ public class StudListRunner
                 out.println();
             }catch(InputMismatchException e){
                 out.println("Invalid input   -  try again");
+                checkForException = true;
             }
-            sl.printStudent(lName);
+            if(checkForException == false)
+                sl.printStudent(lName);
             break;
 
             case 2:
@@ -92,10 +107,12 @@ public class StudListRunner
                 out.println();
             }catch(InputMismatchException e){
                 out.println("Invalid input   -  try again");
+                checkForException = true;
             }
-            sl.printStudent(stuNum);
+            if(checkForException == false)
+                sl.printStudent(stuNum);
             break;
-            
+
             default:
             System.out.println("Invalid input  -  try again");
             break;
@@ -104,34 +121,43 @@ public class StudListRunner
 
     // if the user chooses option 2
     public static void optionTwo(){
-        out.println("Enter 1 to delete the desired student with their last name" +
-            "Enter 2 to delete the desired student with their ID number");
+        boolean checkForException = false;
+        out.println();
+        out.println("Enter 1 to delete the desired student with their last name");
+        out.println("Enter 2 to delete the desired student with their ID number");
         try{
             selection = sc.nextInt();
             sc.nextLine();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
+            checkForException = true;
         }
         switch(selection){
             case 1: 
             try{
                 out.print("Enter the student's last name");
-                sl.deleteStudentFromList(sc.nextInt());
+                lName = sc.nextLine().trim();                
                 out.println();
             }catch(InputMismatchException e){
                 out.println("Invalid input   -  try again");
+                checkForException = true;
             }
+            if(checkForException == false)
+                sl.deleteStudentFromList(lName);
             break;
 
             case 2:
             try{
                 out.print("Enter the student's ID number");
-                sl.deleteStudentFromList(sc.nextInt());
+                stuNum = sc.nextInt();
                 sc.nextLine();
                 out.println();
             }catch(InputMismatchException e){
                 out.println("Invalid input   -  try again");
+                checkForException = true;
             }
+            if(checkForException == false)
+                sl.deleteStudentFromList(stuNum);
             break;
 
             default:
@@ -140,12 +166,15 @@ public class StudListRunner
     }
     // if the user chooses option 1
     public static void optionOne(){
+        out.println();
         out.print("Enter the new student's name:  ");
+        boolean checkForException = false;
         try{
             fullName = sc.nextLine();
             out.println();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
+            checkForException = true;
         }
         out.print("Enter the new student's gpa:  ");
         try{
@@ -154,6 +183,7 @@ public class StudListRunner
             out.println();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
+            checkForException = true;
         }
         out.print("Enter the student's ID number:  ");
         try{
@@ -162,7 +192,9 @@ public class StudListRunner
             out.println();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
+            checkForException = true;
         }
-        sl.addStudent(fullName.trim(), gpa, stuNum);
+        if(checkForException == false)
+            sl.addStudent(fullName.trim(), gpa, stuNum);
     }
 }

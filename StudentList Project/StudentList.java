@@ -1,7 +1,7 @@
 /**
  * makes studentlist methods
  * @author (Arin Gadre)
- * @version (1024)
+ * @version (1109)
  */
 import java.util.ArrayList;
 public class StudentList
@@ -61,7 +61,7 @@ public class StudentList
             }
         }
         sizeCheck:
-        if(temp.size() > 2){
+        if(temp.size() > 1){
             System.out.println("There are " + temp.size() + " students with that last name");
             break sizeCheck;
         }
