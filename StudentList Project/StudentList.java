@@ -25,77 +25,91 @@ public class StudentList
         for(int i = 0; i < students.size(); i++){
             System.out.println("Student name: " +
                 students.get(i).getFullName());
-            System.out.println(" Student gpa: " + students.get(i).getGPA());
-            System.out.println(" Student number: " +
+            System.out.println("Student gpa: " + students.get(i).getGPA());
+            System.out.println("Student number: " +
                 students.get(i).getStuNumber());
         }
     }
 
     public void printStudent(int stuNum){
-        boolean check = false;
-        int temp = 0;
-        for(int i = 0; (i < students.size()) && (check == false); i++){
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        ArrayList<Student> stud = new ArrayList<Student>();
+        for(int i = 0; i < students.size(); i++){
             if(students.get(i).getStuNumber() == stuNum){
-                check = true;
-                temp = i;
+                temp.add(i);
             }
         }
-        if(check == true){
-            ArrayList<Student> student = new ArrayList<Student>();
-            student.add(students.get(temp));
-            printList(student);
-        }else{
-            System.out.println("Student does not exist.");
+        sizeCheck:
+        if(temp.size() > 2){
+            System.out.println("There are " + temp.size() + " students with that ID number");
+            break sizeCheck;
+        }
+        else if(temp.size() == 1){
+            printList(stud);
+        }
+        else{
+            System.out.println("There are no students with that ID number");
         }
     }
 
     public void printStudent(String lName){
-        boolean check = false;
-        int temp = 0;
-        for(int i = 0; (i < students.size()) && (check == false); i++){
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        ArrayList<Student> stud = new ArrayList<Student>();
+        for(int i = 0; i < students.size(); i++){
             if(students.get(i).getLName().equals(lName.trim())){
-                check = true;
-                temp = i;
+                temp.add(i);
             }
         }
-        if(check == true){
-            ArrayList<Student> student = new ArrayList<Student>();
-            student.add(students.get(temp));
-            printList(student);
-        }else{
-            System.out.println("Student does not exist.");
+        sizeCheck:
+        if(temp.size() > 2){
+            System.out.println("There are " + temp.size() + " students with that last name");
+            break sizeCheck;
+        }
+        else if(temp.size() == 1){
+            printList(stud);
+        }
+        else{
+            System.out.println("There are no students with that last name");
         }
     }
 
     public void deleteStudentFromList(String lName){
-        boolean check = false;
-        int temp = 0;
-        for(int i = 0; (i < students.size()) && (check == false); i++){
-            if(students.get(i).getLName().equals(lName.trim())){
-                check = true;
-                temp = i;
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).getFName().equals(lName.trim())){
+                temp.add(i);
             }
         }
-        if(check == true){
-            students.remove(temp);
-        }else{
-            System.out.println("Student does not exist.");
+        sizeCheck:
+        if(temp.size() > 2){
+            System.out.println("There are " + temp.size() + " students with that last name");
+            break sizeCheck;
+        }
+        else if(temp.size() == 1){
+            students.remove(temp.get(0));
+        }
+        else{
+            System.out.println("There are no students with that last name");
         }
     }
 
     public void deleteStudentFromList(int stuNum){
-        boolean check = false;
-        int temp = 0;
-        for(int i = 0; (i < students.size()) && (check == false); i++){
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        for(int i = 0; i < students.size(); i++){
             if(students.get(i).getStuNumber() == stuNum){
-                check = true;
-                temp = i;
+                temp.add(i);
             }
         }
-        if(check == true){
-            students.remove(temp);
-        }else{
-            System.out.println("Student does not exist.");
+        sizeCheck:
+        if(temp.size() > 2){
+            System.out.println("There are " + temp.size() + " students with that student number");
+            break sizeCheck;
+        }
+        else if(temp.size() == 1){
+            students.remove(temp.get(0));
+        }
+        else{
+            System.out.println("There are no students with that ID number");
         }
     }
 
@@ -206,7 +220,7 @@ public class StudentList
         }
     }
 
-   public void editStudentList(String lName, double gpa, String fullName){
+    public void editStudentList(String lName, double gpa, String fullName){
         // Allows the user to specify a student name and then update or change the Student name and GPA
         boolean check = false;
         int temp = 0;
@@ -233,7 +247,7 @@ public class StudentList
         }
     }
 
-   public void editStudentList(int stuNumber, double gpa, String fullName){
+    public void editStudentList(int stuNumber, double gpa, String fullName){
         //:: Allows the user to specify a Student number and thenupdate or change the Student name and GPA
         boolean check = false;
         int temp = 0;

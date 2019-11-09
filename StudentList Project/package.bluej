@@ -1,9 +1,9 @@
 #BlueJ package file
-dependency1.from=StudentList
-dependency1.to=Student
+dependency1.from=StudListRunner
+dependency1.to=StudentList
 dependency1.type=UsesDependency
-dependency2.from=StudListRunner
-dependency2.to=StudentList
+dependency2.from=StudentList
+dependency2.to=Student
 dependency2.type=UsesDependency
 editor.fx.0.height=734
 editor.fx.0.width=1294
