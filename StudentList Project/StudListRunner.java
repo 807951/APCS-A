@@ -22,46 +22,49 @@ public class StudListRunner
     }
 
     public static void menuNumber(){
+        boolean check;
         do{
+            check = false;
             out.println();
             out.println("1 add a new student record");
             out.println("2 delete a student record");
             out.println("3 print a specific student");
             out.println("4 print out all student records");
             out.println("5 delete all students from the record");
-            out.println("press quit to exit the program");
+            out.println("enter any character to stop the program");
             out.println("After an action is completed, enter any character to return to the main menu");
             try{
                 out.print("Enter selection:  ");
-                statement = sc.nextLine().trim();
+                selection = sc.nextInt();
                 System.out.println();
             }
             catch(InputMismatchException e){
                 out.println("Invalid input   -  try again");
+                check = true;
             }
-            switch(statement){
-                case "1":
+            switch(selection){
+                case 1:
                 optionOne();
                 break;
 
-                case "2":
+                case 2:
                 optionTwo();
                 break;
 
-                case "3":
+                case 3:
                 optionThree();
                 break;
 
-                case "4":
+                case 4:
                 optionFour();
                 break;
 
-                case "5":
+                case 5:
                 optionFive();
                 break;
 
             }
-        } while(!statement.equals("quit"));
+        } while(check == false);
         System.out.println("program ended");
     }
     // if the user chooses option 5
