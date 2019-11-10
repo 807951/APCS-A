@@ -174,7 +174,6 @@ public class StudListRunner
         boolean checkForException = false;
         try{
             fullName = sc.nextLine();
-            out.println();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
             checkForException = true;
@@ -182,8 +181,6 @@ public class StudListRunner
         out.print("Enter the new student's gpa:  ");
         try{
             gpa = sc.nextDouble();
-            sc.nextLine();
-            out.println();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
             checkForException = true;
@@ -191,7 +188,6 @@ public class StudListRunner
         out.print("Enter the student's ID number:  ");
         try{
             stuNum = sc.nextInt();
-            sc.nextInt();
             out.println();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
