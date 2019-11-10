@@ -12,7 +12,6 @@ public class StudListRunner
     private static Scanner sc = new Scanner(System.in);
     private static String statement = "";
     private static int selection = 0;
-    private static boolean keepScreen = false;
     private static String lName = "";
     private static String fullName = "";
     private static double gpa = 0.0;
@@ -170,6 +169,11 @@ public class StudListRunner
     // if the user chooses option 1
     public static void optionOne(){
         out.println();
+        out.println("Format 1: First Middle Last");
+        out.println("Format 2: First Last");
+        out.println("Format 3: Last, First Middle ");
+        out.println("Format 4: Last, First");
+        out.println("Enter the student's name in one of these 4 formats");
         out.print("Enter the new student's name:  ");
         boolean checkForException = false;
         try{
@@ -177,8 +181,8 @@ public class StudListRunner
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
             checkForException = true;
-        }
-        out.print("Enter the new student's gpa:  ");
+        }            
+        out.print("Enter the student's gpa:  ");
         try{
             gpa = sc.nextDouble();
         }catch(InputMismatchException e){
@@ -188,12 +192,15 @@ public class StudListRunner
         out.print("Enter the student's ID number:  ");
         try{
             stuNum = sc.nextInt();
-            out.println();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
             checkForException = true;
         }
-        if(checkForException == false)
+        if((fullName.matches(".*\\d.*") == false) && (checkForException == false)){
             sl.addStudent(fullName.trim(), gpa, stuNum);
+        }
+        else{
+             out.println("Invalid input   -  try again");
+        }
     }
 }
