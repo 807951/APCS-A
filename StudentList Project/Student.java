@@ -13,7 +13,7 @@ public class Student
     public Student(String fullName, double gpa, int stuNumber){
         this.gpa = gpa;
         this.stuNumber = stuNumber;
-        parseUserInput(fullName.trim());
+        parseUserInput(fullName);
     }
     //getters
     public String getFullName(){
@@ -63,35 +63,33 @@ public class Student
 
     // parseUserInput
     public void parseUserInput(String userName){
-        String[] arr = userName.split(" ");
-        int commaIndex = arr[0].indexOf(',');
-        if(arr.length > 4 || arr.length < 2){
-            System.out.println("Name was entered in the wrong format.");
-        }else if(arr.length == 3){
-            if(commaIndex == -1){  //
-                // comma index = -1 means there is no comma in the name
-                setFName(arr[0]);
-                setMName(arr[1]);
-                setLName(arr[2]);
+        int firstSpace = userName.indexOf(' ');
+        int lastSpace = userName.lastIndexOf(' ');
+        int commaIndex = userName.indexOf(',');
+        System.out.println(firstSpace + lastSpace + commaIndex);
+        System.out.println(lastSpace);
+        System.out.println( commaIndex);
+        
+        if(firstSpace == lastSpace){ // name with 2 words and possibly a comma
+            if(commaIndex != -1){ // name with 2 words and a comma
+                lName = userName.substring(0, commaIndex);
+                fName = userName.substring(firstSpace + 1, userName.length() - 1);
+                mName = "";
+            }else{ // name with 2 words
+                fName = userName.substring(0, firstSpace);
+                lName = userName.substring(lastSpace+1, userName.length()-1);
+                mName = "";
             }
-            else{
-                arr[0] = arr[0].substring(0, commaIndex);
-                setFName(arr[2]);
-                setMName(arr[1]);
-                setLName(arr[0]);
-            }
-        }else{
-            if(commaIndex == -1){
-                // comma index = -1 means there is no comma in the name
-                setFName(arr[0]);
-                setLName(arr[1]);
-                setMName("");
-            }
-            else{
-                arr[0] = arr[0].substring(0, commaIndex);
-                setFName(arr[1]);
-                setLName(arr[0]);
-                setMName("");
+        }
+        else if(firstSpace != lastSpace){ // name with 3 words and possible a comma
+            if(commaIndex != -1){ // name with 3 words and comma
+                lName = userName.substring(0, commaIndex);
+                fName = userName.substring(firstSpace + 1, lastSpace);
+                mName = userName.substring(lastSpace + 1, userName.length() - 1);
+            }else{ // name with 3 words
+                fName = userName.substring(0, firstSpace);
+                mName = userName.substring(firstSpace + 1, lastSpace);
+                lName = userName.substring(lastSpace + 1, userName.length() - 1);
             }
         }
     }

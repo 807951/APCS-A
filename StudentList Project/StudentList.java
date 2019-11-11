@@ -4,11 +4,42 @@
  * @version (1109)
  */
 import java.util.ArrayList;
+import static java.lang.System.out;
 public class StudentList
 {
     private ArrayList<Student> students = new ArrayList<Student>();
     public void addStudent(String fullName, double gpa, int stuNum){
         students.add(new Student(fullName, gpa, stuNum));
+    }
+
+    public void deleteStudentFromList(int num){
+        ArrayList<Integer> nums = new ArrayList<Integer>();
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).getStuNumber() == num){
+                nums.add(i);
+            }
+        }
+        if(nums.size() > 1)
+            out.println("There are " + nums.size() + " students with that ID number");
+        else if(nums.size() == 1)
+            students.remove(students.get(nums.get(0)));
+        else
+            out.println("There are no students with a ID number of " + num);
+    }
+
+    public void deleteStudentFromList(String str){
+        ArrayList<Integer> nums = new ArrayList<Integer>();
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).getFullName().indexOf(str.trim()) != -1){
+                nums.add(i);
+            }
+        }
+        if(nums.size() > 1)
+            out.println("There are " + nums.size() + " students with that last name");
+        else if(nums.size() == 1)
+            students.remove(students.get(nums.get(0)));
+        else
+            out.println("There are no students with a last name of " + str);
     }
 
     public void printList(ArrayList<Student> students){
@@ -32,19 +63,16 @@ public class StudentList
     }
 
     public void printStudent(int stuNum){
-        ArrayList<Integer> temp = new ArrayList<Integer>();
         ArrayList<Student> stud = new ArrayList<Student>();
         for(int i = 0; i < students.size(); i++){
             if(students.get(i).getStuNumber() == stuNum){
-                temp.add(i);
+                stud.add(students.get(i));
             }
         }
-        sizeCheck:
-        if(temp.size() > 2){
-            System.out.println("There are " + temp.size() + " students with that ID number");
-            break sizeCheck;
+        if(stud.size() > 2){
+            System.out.println("There are " + stud.size() + " students with that ID number");
         }
-        else if(temp.size() == 1){
+        else if(stud.size() == 1){
             printList(stud);
         }
         else{
@@ -52,25 +80,19 @@ public class StudentList
         }
     }
 
-    public void printStudent(String lName){
-        ArrayList<Integer> temp = new ArrayList<Integer>();
+    public void printStudent(String str){
         ArrayList<Student> stud = new ArrayList<Student>();
         for(int i = 0; i < students.size(); i++){
-            if(students.get(i).getLName().equals(lName.trim())){
-                temp.add(i);
+            if(students.get(i).getFullName().indexOf(str.trim()) != -1){
+                stud.add(students.get(i));
             }
         }
-        sizeCheck:
-        if(temp.size() > 1){
-            System.out.println("There are " + temp.size() + " students with that last name");
-            break sizeCheck;
-        }
-        else if(temp.size() == 1){
+        if(stud.size() > 1)
+            out.println("There are " + stud.size() + " students with that last name");
+        else if(stud.size() == 1)
             printList(stud);
-        }
-        else{
-            System.out.println("There are no students with that last name");
-        }
+        else
+            out.println("There are no students with a last name of " + str);
     }
 
     public void filterSearchStudentListMoreThan(int num){
