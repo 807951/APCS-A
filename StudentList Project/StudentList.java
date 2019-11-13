@@ -8,6 +8,7 @@ import static java.lang.System.out;
 public class StudentList
 {
     private ArrayList<Student> students = new ArrayList<Student>();
+    private ArrayList<Student> origStudents = new ArrayList<Student>();
     public void addStudent(String fullName, double gpa, int stuNum){
         students.add(new Student(fullName, gpa, stuNum));
     }
@@ -104,12 +105,11 @@ public class StudentList
                 check = true;
             }
         }
-        if(check == true){
+        if(check == true)
             printList(studs);
-        }
-        else{
-            System.out.println("Students do not exist!");
-        }
+
+        else
+            out.println("Students do not exist!");
     }
 
     public void filterSearchStudentListLessThan(int num){
@@ -121,12 +121,10 @@ public class StudentList
                 check = true;
             }
         }
-        if(check == true){
+        if(check == true)
             printList(studs);
-        }
-        else{
-            System.out.println("Students do not exist!");
-        }
+        else
+            out.println("Students do not exist!");
     }
 
     public void filterSearchStudentListLessThan(double gpa){
@@ -138,12 +136,11 @@ public class StudentList
                 check = true;
             }
         }
-        if(check == true){
+        if(check == true)
             printList(studs);
-        }
-        else{
-            System.out.println("Students do not exist!");
-        }
+
+        else
+            out.println("Students do not exist!");
     }
 
     public void filterSearchStudentListMoreThan(double gpa){
@@ -167,6 +164,7 @@ public class StudentList
 
     public void sortByLastName()
     {
+        origStudents = students;
         int n = students.size();
         for (int j=0; j<n-1; j++)
         {
@@ -183,7 +181,12 @@ public class StudentList
         }
     }
 
+    public void unsort(){
+        students = origStudents;
+    }
+
     public void sortByStuNumber(){
+        origStudents = students;
         for (int i = 0; i < students.size(); i++) {
             // find position of smallest num between (i + 1)th elemen and last element
             int pos = i;
