@@ -55,7 +55,10 @@ public class StudListRunner
                 case 5:
                 optionFive();
                 break;
-
+                
+                case 6:
+                optionSix();
+                break;
             }
         } while(check == false);
         System.out.println("program ended");
@@ -135,7 +138,8 @@ public class StudListRunner
             break;
         }
     }
-
+    
+    
     // if the user chooses option 5
     public static void optionFive(){
         sl.clearList();
