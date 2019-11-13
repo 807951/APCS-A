@@ -133,7 +133,7 @@ public class StudentList
         ArrayList<Student> studs = new ArrayList<Student>();
         boolean check = false;
         for(int i = 0; i < students.size(); i++){
-            if(students.get(i).getStuNumber() >= gpa){
+            if(students.get(i).getGPA() <= gpa){
                 studs.add(students.get(i));
                 check = true;
             }
@@ -150,17 +150,15 @@ public class StudentList
         ArrayList<Student> studs = new ArrayList<Student>();
         boolean check = false;
         for(int i = 0; i < students.size(); i++){
-            if(students.get(i).getStuNumber() <= gpa){
+            if(students.get(i).getGPA() >= gpa){
                 studs.add(students.get(i));
                 check = true;
             }
         }
-        if(check == true){
+        if(check == true)
             printList(studs);
-        }
-        else{
+        else
             System.out.println("Students do not exist!");
-        }
     }
 
     public void clearList(){
