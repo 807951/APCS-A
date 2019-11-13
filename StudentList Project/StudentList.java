@@ -175,8 +175,7 @@ public class StudentList
             for (int i=j+1; i<n; i++)
             {
                 Student temp;
-                if
-                (students.get(j).getLName().compareTo(students.get(i).getLName()) > 0)
+                if(students.get(j).getLName().compareTo(students.get(i).getLName()) > 0)
                 {
                     temp = students.get(j);
                     students.set(j, students.get(i));
@@ -204,55 +203,35 @@ public class StudentList
 
     public void editStudentList(String lName, double gpa, String fullName){
         // Allows the user to specify a student name and then update or change the Student name and GPA
-        boolean check = false;
-        int temp = 0;
-        String[] str = fullName.split(" ");
+        ArrayList<Integer> nums = new ArrayList<Integer>();
         for(int i = 0; i < students.size(); i++){
-            if(students.get(i).getLName().equals(lName.trim())){
-                check = true;
-                temp = i;
+            if(students.get(i).getFullName().indexOf(lName.trim()) != -1){
+                nums.add(i);
             }
         }
-        Student s = students.get(temp);
-        testName:
-        if(str.length > 3 || str.length < 2){
-            System.out.println("Enter name in one of the 4 correct formats please.");
-            break testName;
-        }
-        else{
-            if(check == true){
-                students.remove(temp);
-                students.add(temp, new Student(fullName, gpa, s.getStuNumber()));
-            }else{
-                System.out.println("Student does not exist. Try searching with the student's ID number or try again.");
-            }
+        if(nums.size() > 1)
+            out.println("There are " + nums.size() + " students with that last name");
+        else if(nums.size() == 1){
+            Student s = new Student(fullName, gpa, students.get(nums.get(0)).getStuNumber());
+            students.remove(students.get(nums.get(0)));
+            students.add(nums.get(0), s);
         }
     }
 
-    public void editStudentList(int stuNumber, double gpa, String fullName){
-        //:: Allows the user to specify a Student number and thenupdate or change the Student name and GPA
-        boolean check = false;
-        int temp = 0;
-        String[] str = fullName.split(" ");
-        for(int i = 0; ((i < students.size()) && (check == false)); i++){
-            if(students.get(i).getStuNumber() == stuNumber){
-                check = true;
-                temp = i;
+    public void editStudentList(int num, double gpa, String fullName){
+        //:: Allows the user to specify a Student number and then update or change the Student name and GPA      
+        ArrayList<Integer> nums = new ArrayList<Integer>();
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).getStuNumber() == num){
+                nums.add(i);
             }
         }
-        Student s = students.get(temp);
-        testName:
-        if(str.length > 3 || str.length < 2){
-            System.out.println("Enter name in one of the 4 correct formats please.");
-            break testName;
-        }
-        else{
-            if(check == true){
-                students.remove(temp);
-                students.add(temp, new Student(fullName, gpa, stuNumber));
-            }else{
-                System.out.println("Student does not exist. Try searching with the student's last name or try again.");
-            }
+        if(nums.size() > 1)
+            out.println("There are " + nums.size() + " students with that last name");
+        else if(nums.size() == 1){
+            Student s = new Student(fullName, gpa, students.get(nums.get(0)).getStuNumber());
+            students.remove(students.get(nums.get(0)));
+            students.add(nums.get(0), s);
         }
     }
 }

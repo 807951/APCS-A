@@ -66,10 +66,6 @@ public class Student
         int firstSpace = userName.indexOf(' ');
         int lastSpace = userName.lastIndexOf(' ');
         int commaIndex = userName.indexOf(',');
-        System.out.println(firstSpace + lastSpace + commaIndex);
-        System.out.println(lastSpace);
-        System.out.println( commaIndex);
-        
         if(firstSpace == lastSpace){ // name with 2 words and possibly a comma
             if(commaIndex != -1){ // name with 2 words and a comma
                 lName = userName.substring(0, commaIndex);
@@ -77,7 +73,7 @@ public class Student
                 mName = "";
             }else{ // name with 2 words
                 fName = userName.substring(0, firstSpace);
-                lName = userName.substring(lastSpace+1, userName.length()-1);
+                lName = userName.substring(lastSpace+1, userName.length());
                 mName = "";
             }
         }

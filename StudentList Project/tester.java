@@ -15,54 +15,10 @@ public class tester
     private static int selection = 0;
     private static String lName = "";
     private static String fullName = "";
+    private static String newName = "";
     private static double gpa = 0.0;
     private static int stuNum = 0;
     private static ArrayList<Student> studs = new ArrayList<Student>();
-    public static void optionThree(){
-        studs.clear();
-        studs.add(new Student("a b", 1.0, 1));
-        studs.add(new Student("c d", 2.0, 2));
-        boolean checkForException = false;
-        out.println();
-        out.println("Enter 1 to print the desired student with their last name");
-        out.println("Enter 2 to print the desired student with their ID number");
-        try{
-            selection = sc.nextInt();
-            sc.nextLine();
-        }catch(InputMismatchException e){
-            out.println("Invalid input   -  try again");
-            checkForException = true;
-        }
-        switch(selection){
-            case 1:
-            out.print("Enter the student's last name:  ");
-            try{
-                lName = sc.nextLine().trim();
-            }catch(InputMismatchException e){
-                out.println("Invalid input   -  try again");
-                checkForException = true;
-            }
-            if(checkForException == false)
-                printStudent(lName);
-            break;
-
-            case 2:
-            out.print("Enter the student's ID number:  ");
-            try{
-                stuNum = sc.nextInt();
-            }catch(InputMismatchException e){
-                out.println("Invalid input   -  try again");
-                checkForException = true;
-            }
-            if(checkForException == false)
-                printStudent(stuNum);
-            break;
-
-            default:
-            out.println("Invalid input   -  try again");
-            break;
-        }
-    }
 
     public static void addStudent(String fullName, double gpa, int stuNum){
         studs.add(new Student(fullName, gpa, stuNum));
@@ -75,40 +31,51 @@ public class tester
             System.out.println("Student gpa: " + studs.get(i).getGPA());
             System.out.println("Student number: " +
                 studs.get(i).getStuNumber());
+            out.println();
         }
     }
 
-    public static void printStudent(int stuNum){
-        ArrayList<Student> stud = new ArrayList<Student>();
-        for(int i = 0; i < studs.size(); i++){
-            if(studs.get(i).getStuNumber() == stuNum){
-                stud.add(studs.get(i));
+    public static void sortByLastName()
+    {
+        out.println();
+        out.println("Before sorting");
+        studs.add(new Student("g h",4.0, 4));
+        studs.add(new Student("e f", 3.0, 3));
+        studs.add(new Student("c d", 2.0, 2));
+        studs.add(new Student("a b", 1.0, 1));
+        printList();
+        out.println();
+        int n = studs.size();
+        for (int j=0; j<n-1; j++)
+        {
+            // bubble sort using compareTo method
+            for (int i=j+1; i<n; i++)
+            {
+                Student temp;
+                if(studs.get(j).getLName().compareTo(studs.get(i).getLName()) > 0)
+                {
+                    temp = studs.get(j);
+                    studs.set(j, studs.get(i));
+                    studs.set(i, temp);
+                }
             }
-        }
-        if(stud.size() > 2){
-            System.out.println("There are " + stud.size() + " students with that ID number");
-        }
-        else if(stud.size() == 1){
-            printList(stud);
-        }
-        else{
-            System.out.println("There are no students with that ID number");
         }
     }
 
-    public static void printStudent(String str){
-        ArrayList<Student> stud = new ArrayList<Student>();
-        for(int i = 0; i < studs.size(); i++){
-            if(studs.get(i).getFullName().indexOf(str.trim()) != -1){
-                stud.add(studs.get(i));
+    public static void sortByStuNumber(){
+        for (int i = 0; i < studs.size(); i++) {
+            // find position of smallest num between (i + 1)th elemen and last element
+            int pos = i;
+            for (int j = i; j < studs.size(); j++) {
+                if (studs.get(j).getStuNumber() <
+                studs.get(pos).getStuNumber())
+                    pos = j;
             }
+            // Swap min (smallest num) to current position on array
+            Student min = studs.get(pos);
+            studs.set(pos, studs.get(i));
+            studs.set(i, min);
         }
-        if(stud.size() > 1)
-            out.println("There are " + stud.size() + " students with that last name");
-        else if(stud.size() == 1)
-            printList(stud);
-        else
-            out.println("There are no students with a last name of " + str);
     }
 
     public static void printList(ArrayList<Student> students){

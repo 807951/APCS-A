@@ -16,6 +16,7 @@ public class StudListRunner
     private static String fullName = "";
     private static double gpa = 0.0;
     private static int stuNum = 0;
+    private static String newName;
     public static void main(){
         menuNumber();
     }
@@ -60,6 +61,82 @@ public class StudListRunner
         } while(check == false);
         System.out.println("program ended");
     }
+    //if the user chooses option 6
+
+    public static void optionSix(){
+        boolean checkForException = false;
+        out.println();
+        out.println("To find a student based on their ID number and edit the student's name or gpa, press 1" 
+            + "\nTo find a student based on their last name and edit the student's name or gpa, press 2");
+        try{
+            selection = sc.nextInt();
+            sc.nextLine();
+        }catch(InputMismatchException e){
+            out.println("Invalid input   -  try again");
+            checkForException = true;
+        }
+        switch(selection){
+            case 1:
+            out.println("Enter the student's ID number:  ");
+            try{
+                stuNum = sc.nextInt();
+                sc.nextLine();
+            }catch(InputMismatchException e){
+                out.println("Invalid input   -  try again");
+                checkForException = true;
+            }
+            out.println("Enter the student's new gpa:  ");
+            try{
+                gpa = sc.nextDouble();
+                sc.nextLine();
+            }catch(InputMismatchException e){
+                out.println("Invalid input   -  try again");
+                checkForException = true;
+            }
+            out.println("Enter the student's new name:  ");
+            try{
+                newName = sc.nextLine();
+            }catch(InputMismatchException e){
+                out.println("Invalid input   -  try again");
+                checkForException = true;
+            }
+            if(checkForException == false)
+                sl.editStudentList(stuNum, gpa, newName);
+            break;
+
+            case 2:
+            out.println("Enter the student's last name:  ");
+            try{
+                lName = sc.nextLine();
+            }catch(InputMismatchException e){
+                out.println("Invalid input   -  try again");
+                checkForException = true;
+            }
+            out.println("Enter the student's new gpa:  ");
+            try{
+                gpa = sc.nextDouble();
+                sc.nextLine();
+            }catch(InputMismatchException e){
+                out.println("Invalid input   -  try again");
+                checkForException = true;
+            }
+            out.println("Enter the student's new name:  ");
+            try{
+                newName = sc.nextLine();
+            }catch(InputMismatchException e){
+                out.println("Invalid input   -  try again");
+                checkForException = true;
+            }
+            if(checkForException == false)
+                sl.editStudentList(lName, gpa, newName);
+            break;
+
+            default:
+            out.println("Invalid input   -  try again");
+            break;
+        }
+    }
+
     // if the user chooses option 5
     public static void optionFive(){
         sl.clearList();
@@ -159,22 +236,17 @@ public class StudListRunner
     public static void optionOne(){
         boolean checkForException = false;
         out.println();
-        out.println("Format 1: First Middle Last");
-        out.println("Format 2: First Last");
-        out.println("Format 3: Last, First Middle ");
-        out.println("Format 4: Last, First");
-        out.println("Enter the student's name in one of these 4 formats");
-        out.println("Enter the new student's name:  ");
-        //out.println();
+        //out.println("Format 1: First Middle Last\nFormat 2: First Last\nFormat 3: Last, First Middle\nFormat 4: Last, First\nEnter the student's name in one of these 4 formats\nEnter the new student's name:  ");
+        out.println("enter something:  ");
         try{
+            sc.nextLine();
             fullName = sc.nextLine();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
             checkForException = true;
         }     
-        sc.nextLine();
-        out.println("Enter the student's gpa:  ");
         try{
+            out.println("Enter the student's gpa:  ");
             gpa = sc.nextDouble();
         }catch(InputMismatchException e){
             out.println("Invalid input   -  try again");
@@ -188,7 +260,7 @@ public class StudListRunner
             checkForException = true;
         }
         if((fullName.matches(".*\\d.*") == false) && (checkForException == false)){
-            sl.addStudent(fullName.trim(), gpa, stuNum);
+            sl.addStudent(fullName, gpa, stuNum);
         }
         else{
             out.println("Invalid input   -  try again");

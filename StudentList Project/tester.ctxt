@@ -1,15 +1,13 @@
 #BlueJ class context
 comment0.target=tester
-comment1.params=
-comment1.target=void\ optionThree()
-comment2.params=fullName\ gpa\ stuNum
-comment2.target=void\ addStudent(java.lang.String,\ double,\ int)
+comment1.params=fullName\ gpa\ stuNum
+comment1.target=void\ addStudent(java.lang.String,\ double,\ int)
+comment2.params=
+comment2.target=void\ printList()
 comment3.params=
-comment3.target=void\ printList()
-comment4.params=stuNum
-comment4.target=void\ printStudent(int)
-comment5.params=str
-comment5.target=void\ printStudent(java.lang.String)
-comment6.params=students
-comment6.target=void\ printList(java.util.ArrayList)
-numComments=7
+comment3.target=void\ sortByLastName()
+comment4.params=
+comment4.target=void\ sortByStuNumber()
+comment5.params=students
+comment5.target=void\ printList(java.util.ArrayList)
+numComments=6
