@@ -1,7 +1,7 @@
 /**
  * runs student list program by getting user input
  * @author (Arin Gadre)
- * @version (1108)
+ * @version (1112)
  */
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -25,7 +25,6 @@ public class StudListRunner
         boolean check;
         do{
             check = false;
-            out.println();
             out.println("1 add a new student record\n2 delete a student record\n3 print a specific student\n4 print out all student records\n5 delete all students from the record");
             try{
                 out.println("Enter selection:  ");
