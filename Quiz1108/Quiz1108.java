@@ -18,7 +18,6 @@ public class Quiz1108
         ArrayList<Integer> resultList = new ArrayList<Integer>();
         for(int i = 0; i < nums.length; i++)
             resultList.add(nums[i]);
-
         return resultList;
     }  
 
