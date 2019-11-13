@@ -1,11 +1,11 @@
 #BlueJ package file
-dependency1.from=StudentList
-dependency1.to=Student
+dependency1.from=tester
+dependency1.to=StudentList
 dependency1.type=UsesDependency
 dependency2.from=tester
-dependency2.to=StudentList
+dependency2.to=Student
 dependency2.type=UsesDependency
-dependency3.from=tester
+dependency3.from=StudentList
 dependency3.to=Student
 dependency3.type=UsesDependency
 dependency4.from=StudListRunner
