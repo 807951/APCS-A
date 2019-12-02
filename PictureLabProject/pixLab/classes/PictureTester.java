@@ -1,4 +1,3 @@
- 
 
 /**
  * This class contains class (static) methods
@@ -17,6 +16,15 @@ public class PictureTester
         beach.explore();
         beach.zeroBlue();
         beach.explore();
+    }
+
+    /** Method to test fixUnderwater */
+    public static void testFixUnderwater()
+    {
+        Picture water = new Picture("water.jpg");
+        water.explore();
+        water.fixUnderwater();
+        water.explore();
     }
 
     public static void testMirrorVerticalRightToLeft()
@@ -92,13 +100,13 @@ public class PictureTester
         // uncomment a call here to run a test
         // and comment out the ones you don't want
         // to run
-        testZeroBlue();
+        //testZeroBlue();
         //testKeepOnlyBlue();
         //testKeepOnlyRed();
         //testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
-        //testFixUnderwater();
+        testFixUnderwater();
         //testMirrorVertical();
         //testMirrorTemple();
         //testMirrorArms();
