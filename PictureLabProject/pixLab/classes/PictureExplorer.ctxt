@@ -2,7 +2,7 @@
 comment0.target=PictureExplorer
 comment0.text=\r\n\ Displays\ a\ picture\ and\ lets\ you\ explore\ the\ picture\ by\ displaying\ the\ row,\ column,\ red,\r\n\ green,\ and\ blue\ values\ of\ the\ pixel\ at\ the\ cursor\ when\ you\ click\ a\ mouse\ button\ or\r\n\ press\ and\ hold\ a\ mouse\ button\ while\ moving\ the\ cursor.\ \ It\ also\ lets\ you\ zoom\ in\ or\r\n\ out.\ \ You\ can\ also\ type\ in\ a\ row\ and\ column\ value\ to\ see\ the\ color\ at\ that\ location.\r\n\ \r\n\ Originally\ created\ for\ the\ Jython\ Environment\ for\ Students\ (JES).\ \r\n\ Modified\ to\ work\ with\ DrJava\ by\ Barbara\ Ericson\r\n\ Also\ modified\ to\ show\ row\ and\ columns\ by\ Barbara\ Ericson\r\n\ \r\n\ @author\ Keith\ McDermottt,\ gte047w@cc.gatech.edu\r\n\ @author\ Barb\ Ericson\ ericson@cc.gatech.edu\r\n
 comment1.params=picture
-comment1.target=PictureExplorer(classes.DigitalPicture)
+comment1.target=PictureExplorer(DigitalPicture)
 comment1.text=\r\n\ Public\ constructor\ \r\n\ @param\ picture\ the\ picture\ to\ explore\r\n
 comment10.params=evt
 comment10.target=void\ actionPerformed(java.awt.event.ActionEvent)

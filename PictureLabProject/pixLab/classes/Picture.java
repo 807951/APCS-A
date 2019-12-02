@@ -730,10 +730,10 @@ public class Picture extends SimplePicture
 
     Picture flower2 = new Picture("flower2.jpg");
 
-    //this.copy(flower1,100,0);
+    this.copy(flower1,100,0);
     this.copy2(flower1,0,100, 0, 100);
-    //flower1.explore();
-    //this.copy(flower1,200,0);
+    flower1.explore();
+    this.copy(flower1,200,0);
     // Mirroring
     int mirrorPoint = 98;
     Pixel rightPixel = null;
@@ -767,13 +767,13 @@ public class Picture extends SimplePicture
 
     this.copy2(flowerinverse, 100, 300, 80, 300);
 
-    //this.copy(flowerNoBlue,300,0);
+    this.copy(flowerNoBlue,300,0);
 
-    //this.copy(flower1,400,0);
+    this.copy(flower1,400,0);
 
-    //this.copy(flower2,500,0);
+    this.copy(flower2,500,0);
 
-    //this.mirrorVertical();
+    this.mirrorVertical();
 
 
 
