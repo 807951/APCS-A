@@ -1,11 +1,65 @@
-package classes;
-
+import java.util.Random;
 public class IntArrayWorker
 {
     /** two dimensional matrix */
     private int[][] matrix = null;
 
-    /** set the matrix to the passed one
+    /**
+     * loadEvensOdds will load the left side of the array with even numbers and odds on the right side
+     * flipVertical will take the array and mirror elements over a centerline.  The result should be Odds on the left and evens on the right.
+     */
+    public void loadEvensOdds(int[][] a){
+        Random ran = new Random();
+        for(int i = 0; i < a.length; i++){
+            for(int j = 0; j < a[i].length; j++){
+                a[i][j] = ran.nextInt(10) + 1;
+                if(j <= (a[i].length / 2) - 1){
+                    if((a[i][j] % 2) != 0){
+                        int n = ran.nextInt(1);
+                        if(n == 1)
+                            a[i][j] += 1;
+                        else
+                            a[i][j] -= 1;
+                    }
+                }
+                else{
+                    if((a[i][j] % 2) == 0){
+                        int n = ran.nextInt(1);
+                        if(n == 1)
+                            a[i][j] += 1;
+                        else
+                            a[i][j] -= 1;
+                    }
+                }
+            }
+        }
+    }
+
+    public static void printArrays(int[][] a){
+        for(int i = 0; i < a.length; i++){
+            System.out.print("[");
+            for(int j = 0; j < a[i].length; j++){
+                if(j != a[i].length-1)
+                    System.out.print(a[i][j] + ", ");
+                else
+                    System.out.print(a[i][j] + "]");
+            }
+            System.out.println();
+        }
+    }
+
+    public void flipVertical(int[][] a){
+        int temp = 0;
+        for(int i = 0; i < (a.length); i++){
+            for(int j = 0; j < a[i].length/2; j++){
+                temp = a[i][j];
+                a[i][j] = a[i][a[i].length-j-1];
+                a[i][a[i].length-j-1] = temp;
+            }
+        }
+    }
+
+    /** set th  e matrix to the passed one
      * @param theMatrix the one to use
      */
     public void setMatrix(int[][] theMatrix)
@@ -133,7 +187,7 @@ public class IntArrayWorker
         {
             if (col < matrix[row].length)
                 total += matrix[row][col];
-        
+
         }
         return total;
     }
