@@ -1,18 +1,17 @@
-package classes;
-
 public class IntArrayWorkerTester
 {
     /** method to test setMatrix */
     public static void testSetMatrix()
     {
-        IntArrayWorker worker = new IntArrayWorker();
+        IntArrayWorker worker  = new IntArrayWorker();
         int[][] nums = {{1, 1, 1} ,{2,2,2}};
         worker.setMatrix(nums);
         System.out.println("This should have all 1's in first row and all 2's in second");
         worker.print();
     }
 
-    /** Method to test fillPattern1 */
+
+    /** Method   to test fillPattern1 */
     public static void testFillPattern1()
     {
         IntArrayWorker worker = new IntArrayWorker();
