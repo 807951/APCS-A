@@ -129,9 +129,9 @@ public class Picture extends SimplePicture
                 int red = Math.abs(pixelObj.getRed() - 21);
                 int green = Math.abs(pixelObj.getGreen() - 160);
                 int blue = Math.abs(pixelObj.getBlue() - 175);
-                // (R, G, B) is (21, 163, 173)
+                // (R, G, B) is (21, 160, 175)
                 int difference = red + green + blue;
-                if (difference > 21) {
+                if (difference < 21) {
                     pixelObj.setRed(255);
                     pixelObj.setGreen(255);
                     pixelObj.setBlue(255);
@@ -142,7 +142,6 @@ public class Picture extends SimplePicture
                     pixelObj.setBlue(0);
                 }
             }
-            
         }
     }
 
