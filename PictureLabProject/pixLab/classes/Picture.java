@@ -5,7 +5,7 @@ import java.awt.geom.*;
 import java.awt.image.BufferedImage;
 import java.text.*;
 import java.util.*;
-import java.util.List; // resolves problem with java.awt.List and java.util.List
+import java.util.List;
 import java.io.*;
 /**
  * A class that represents a picture.  This class inherits from 
@@ -148,7 +148,6 @@ public class Picture extends SimplePicture
     /** Method to set the blue to 0 */
 
     public void zeroBlue()
-
     {
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels)
@@ -156,6 +155,28 @@ public class Picture extends SimplePicture
             for (Pixel pixelObj : rowArray)
             {
                 pixelObj.setBlue(0);
+            }
+        }
+    }
+    public void zeroRed()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels)
+        {
+            for (Pixel pixelObj : rowArray)
+            {
+                pixelObj.setRed(0);
+            }
+        }
+    }
+    public void zeroGreen()
+    {
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels)
+        {
+            for (Pixel pixelObj : rowArray)
+            {
+                pixelObj.setGreen(0);
             }
         }
     }
@@ -429,7 +450,6 @@ public class Picture extends SimplePicture
     }
 
     public void mirrorGull()
-
     {
         int mirrorPoint = 345;
         Pixel rightPixel = null;
@@ -461,10 +481,7 @@ public class Picture extends SimplePicture
 
      */
 
-    public void copy(Picture fromPic, 
-
-    int startRow, int startCol)
-
+    public void copy(Picture fromPic, int startRow, int startCol)
     {
         Pixel fromPixel = null;
         Pixel toPixel = null;
@@ -516,7 +533,6 @@ public class Picture extends SimplePicture
     /** Method to create a collage of several pictures */
 
     public void createCollage()
-
     {
         Picture flower1 = new Picture("flower1.jpg");
         Picture flower2 = new Picture("flower2.jpg");
@@ -536,25 +552,24 @@ public class Picture extends SimplePicture
                 rightPixel = pixels[row][col];      
                 leftPixel = pixels[mirrorPoint - row + mirrorPoint][col];
                 leftPixel.setColor(rightPixel.getColor());
-
             }
-
         }
-        Picture flowerNoBlue = new Picture(flower2);
-        flowerNoBlue.zeroBlue();
-        this.copy2(flowerNoBlue,300,350,80,500);
+        Picture flowerNoRed = new Picture(flower2);
+        flowerNoRed.zeroRed();
+        this.copy2(flowerNoRed,300,350,80,500);
         Picture flowerinverse = new Picture(flower2);
+        flowerinverse.zeroGreen();
         flowerinverse.invert();
-        this.copy2(flowerinverse, 100, 300, 80, 300);
-        this.copy(flowerNoBlue,300,0);
+        this.copy2(flowerinverse, 100, 300, 80, 250);
+        this.copy(flowerNoRed,300,0);
         this.copy(flower1,400,0);
         this.copy(flower2,500,0);
         this.mirrorVertical();
+        this.mirrorVerticalRightToLeft();
         this.write("collage.jpg");
     }
 
     public void myCollage()
-
     {
         Picture flower1 = new Picture("flower1.jpg");
         this.copy2(flower1,10,20, 0, 100);
@@ -600,7 +615,6 @@ public class Picture extends SimplePicture
      */
 
     public void edgeDetection2(int edgeDist)
-
     {
         Pixel currentPixel = null, testPixel = null;
         // width and height of pixel cluster
@@ -619,33 +633,19 @@ public class Picture extends SimplePicture
                 // I may need to determin which of the two partial clusters is darker, for filling in purposes
                 for (double angle = 0; angle < Math.PI + 0.1; angle += Math.PI / 8)
                 {
-
                     ArrayList<Pixel> group1 = this.getPartialArray(currentPixels, angle, 0);
-
                     Color group1Color = this.getAverageColor(this.getPixelColors(group1));
-
                     ArrayList<Pixel> group2 = this.getPartialArray(currentPixels, angle, 1);
-
                     Color group2Color = this.getAverageColor(this.getPixelColors(group2));
-
                     double currentColorDistance = this.colorDistance(group1Color, group2Color);
-
                     if (currentColorDistance > greatestDistance)
-
                     {
-
                         greatestDistance = currentColorDistance;
-
                         greatestAngle = angle;
-
                     }
-
                 }
-
                 greatestAngle = Math.round(greatestAngle * 100.0) / 100.0;
-
                 edgeAngle[row / testHeight][col / testWidth] = greatestAngle;
-
                 if (greatestDistance > edgeDist)
                 {
                     ArrayList<Pixel> group1 = this.getPartialArray(currentPixels, greatestAngle, 0);
@@ -654,42 +654,24 @@ public class Picture extends SimplePicture
                     {
                         pixel.setColor(Color.BLACK);
                     }
-
                     for (Pixel pixel : group2)
-
                     {
-
                         pixel.setColor(Color.WHITE);
-
                     }
-
                 }
-
                 else
-
                 {
-
                     for (Pixel[] pixelArray : currentPixels)
-
                     {
-
-                        for (Pixel pixel : pixelArray)
-
+                       for (Pixel pixel : pixelArray)
                         {
-
                             pixel.setColor(Color.WHITE);
-
                         }
-
                     }
-
                 }
-
             }
-
         }
-
-        File file = new File("outputAngles.txt");
+        /*File file = new File("outputAngles.txt");
         try{
             PrintWriter writer = new PrintWriter(file, "UTF-8");
 
@@ -704,7 +686,7 @@ public class Picture extends SimplePicture
             }
             writer.close();
         }
-        catch(Exception e){ e.printStackTrace(); }
+        catch(Exception e){ e.printStackTrace(); }*/
     }
 
     public double colorDistance(Color testColor1, Color testColor2)
@@ -904,13 +886,10 @@ public class Picture extends SimplePicture
         int centerRow = rows / 2, centerCol = cols / 2;
         int arrayLength = (rows * cols);
         ArrayList<Pixel> tempList = new ArrayList<Pixel>();
-
         double slope = Math.tan(angle);
-
-        if (slope == 0) slope = 0.001;
-
+        if (slope == 0) 
+            slope = 0.001;
         double newSlope = -1 / slope;
-
         for (int i = 0; i < arrayLength; i++)
         {
             int currentRow = i / cols, currentCol = i % cols;
@@ -933,9 +912,7 @@ public class Picture extends SimplePicture
                 }
             }
         }
-
         return tempList;
-
     }
 
     public static ArrayList<Integer> getPartialArray(int[][] fullArray, double angle, int typeOf)
@@ -944,40 +921,31 @@ public class Picture extends SimplePicture
         int centerRow = rows / 2, centerCol = cols / 2;
         int arrayLength = (rows * cols);
         ArrayList<Integer> tempList = new ArrayList<Integer>();
-
         double slope = Math.tan(angle);
-
-        if (slope == 0) slope = 0.001;
-
+        if (slope == 0) 
+            slope = 0.001;
         double newSlope = -1 / slope;
-
         for (int i = 0; i < arrayLength; i++)
         {
             int currentRow = i / cols, currentCol = i % cols;
-            System.out.println(i + "\t" + currentRow + " " + currentCol);
+            //System.out.println(i + "\t" + currentRow + " " + currentCol);
             if (currentCol < (newSlope * (currentRow - centerRow) + centerCol))
             {
                 if (typeOf == 1)
                 {
                     tempList.add(fullArray[currentRow][currentCol]);
-                    System.out.println("added " + i);
+                    //System.out.println("added " + i);
                 }
             }
             else
             {
                 if (typeOf == 0)
                 {
-
                     tempList.add(fullArray[currentRow][currentCol]);
-
-                    System.out.println("added " + i);
-
+                    //System.out.println("added " + i);
                 }
-
             }
-
         }
-
         return tempList;
     }
 
