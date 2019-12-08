@@ -41,12 +41,19 @@ public class PictureTester
         beach.explore();
     }
 
-    public static void testFixUnderwater()
-
+    public static void testFixUnderwater1()
     {
         Picture fishes = new Picture("water.jpg");
         fishes.explore();
-        fishes.fixUnderwater();
+        fishes.fixUnderwater1();
+        fishes.explore();
+    }
+    
+    public static void testFixUnderwater2()
+    {
+        Picture fishes = new Picture("water.jpg");
+        fishes.explore();
+        fishes.fixUnderwater2();
         fishes.explore();
     }
 
@@ -167,13 +174,14 @@ public class PictureTester
         //testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
-        //testFixUnderwater();
+        //testFixUnderwater1();
+        testFixUnderwater2();
         //testMirrorVertical();
         //testMirrorTemple();
         //testMirrorArms();
         //testMirrorGull();
         //testMirrorDiagonal();
-        testCollage();
+        //testCollage();
         //testCopy();
         //testEdgeDetection();
         //testEdgeDetection2();

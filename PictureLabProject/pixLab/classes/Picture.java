@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
@@ -122,24 +121,84 @@ public class Picture extends SimplePicture
     }
 
     /** Method used to make the fish in water.jpg easier to see*/
-    public void fixUnderwater(){
+    public void fixUnderwater2()
+    {
         Pixel[][] pixels = this.getPixels2D();
+        int redAverage = 0, greenAverage = 0, blueAverage = 0, 
+        totalPixels = 0, maxRed = 0, minRed = 255, maxGreen = 0,
+        minGreen = 255, maxBlue = 0, minBlue = 255;
+        // takes a sample from a fish and finds the average color value and range of colors
+        for (int row = 26; row < 36; row++)
+        {
+            for (int col = 178; col < 198; col++)
+            {
+                totalPixels++;
+                Pixel myPixel = pixels[row][col];
+                redAverage += myPixel.getRed();
+                greenAverage += myPixel.getGreen();
+                blueAverage += myPixel.getBlue();
+                if (myPixel.getRed() > maxRed) 
+                    maxRed = myPixel.getRed(); 
+                else if (myPixel.getRed() < minRed)
+                    minRed = myPixel.getRed();
+                else if (myPixel.getGreen() > maxGreen)
+                    maxGreen = myPixel.getGreen();
+                else if (myPixel.getGreen() < minGreen)
+                    minGreen = myPixel.getGreen();
+                else if (myPixel.getBlue() > maxBlue)
+                    maxBlue = myPixel.getBlue();
+                else if (myPixel.getGreen() < minBlue)
+                    minBlue = myPixel.getBlue();
+            }
+        }
+        redAverage = redAverage / totalPixels;
+        greenAverage = greenAverage / totalPixels;
+        blueAverage = blueAverage / totalPixels;
+        Color averageColor = new Color(redAverage, greenAverage, blueAverage);
+        // calculates the range
+        int redRange = (maxRed - minRed), greenRange = (maxGreen - minGreen),
+            blueRange = (maxBlue - minBlue), redDistance = redRange,
+            greenDistance = greenRange, blueDistance = blueRange;
+        double maxDistance = Math.sqrt(redDistance * redDistance +
+                greenDistance * greenDistance +
+                blueDistance * blueDistance), tolerance = 1.7; // higher tolerance means more pixels will be identified as "fish"
+        // changes the image based on calculated distance from sample value
+        for (int row = 0; row < pixels.length; row++) // Pixel[] rowArray : pixels)
+        {
+            for (int col = 0; col < pixels[row].length; col++) // Pixel pixelObj : rowArray)
+            {
+                Pixel myPixel = pixels[row][col]; //
+                boolean closeEnough = myPixel.colorDistance(averageColor) < maxDistance * tolerance;
+                if (closeEnough)
+                    myPixel.setBlue(myPixel.getBlue() + 50);
+                else
+                    myPixel.setBlue(myPixel.getBlue() - 50);
+            }
+        }
+    }
+
+    /** Method used to make the fish in water.jpg easier to see*/
+    public void fixUnderwater1(){
+        Pixel[][] pixels = this.getPixels2D();
+        int avg = 0, difference = 0;
         for (Pixel[] rowArray : pixels){
             for (Pixel pixelObj : rowArray){
-                int red = Math.abs(pixelObj.getRed() - 21);
-                int green = Math.abs(pixelObj.getGreen() - 160);
-                int blue = Math.abs(pixelObj.getBlue() - 175);
+                int red = Math.abs(pixelObj.getRed() - 21),
+                    green = Math.abs(pixelObj.getGreen() - 165),
+                    blue = Math.abs(pixelObj.getBlue() - 175);
                 // (R, G, B) is (21, 160, 175)
-                int difference = red + green + blue;
+                difference = red + green + blue;
                 if (difference < 21) {
-                    pixelObj.setRed(255);
+                    /*pixelObj.setRed(255);
                     pixelObj.setGreen(255);
-                    pixelObj.setBlue(255);
+                    pixelObj.setBlue(255);*/
+                    Color newColor = new Color((255 - pixelObj.getRed()), (255 - pixelObj.getGreen()), (255 - pixelObj.getBlue()));
+                    pixelObj.setColor(newColor);
                 }
                 else{
                     pixelObj.setRed(0);
-                    pixelObj.setGreen(0);
-                    pixelObj.setBlue(0);
+                    pixelObj.setGreen(255);
+                    pixelObj.setBlue(0);                 
                 }
             }
         }
@@ -158,6 +217,7 @@ public class Picture extends SimplePicture
             }
         }
     }
+
     public void zeroRed()
     {
         Pixel[][] pixels = this.getPixels2D();
@@ -169,6 +229,7 @@ public class Picture extends SimplePicture
             }
         }
     }
+
     public void zeroGreen()
     {
         Pixel[][] pixels = this.getPixels2D();
@@ -284,16 +345,6 @@ public class Picture extends SimplePicture
             }
         }
     }
-
-    /**
-
-     * Method to fix the fish
-
-     * Takes a sample and adjust the image
-
-     * to better see the fish
-
-     */
 
     /** Method that mirrors the picture around a 
      * vertical mirror in the center of the picture
@@ -663,7 +714,7 @@ public class Picture extends SimplePicture
                 {
                     for (Pixel[] pixelArray : currentPixels)
                     {
-                       for (Pixel pixel : pixelArray)
+                        for (Pixel pixel : pixelArray)
                         {
                             pixel.setColor(Color.WHITE);
                         }
@@ -673,18 +724,18 @@ public class Picture extends SimplePicture
         }
         /*File file = new File("outputAngles.txt");
         try{
-            PrintWriter writer = new PrintWriter(file, "UTF-8");
+        PrintWriter writer = new PrintWriter(file, "UTF-8");
 
-            for (int row = 0; row < edgeAngle.length; row++)
-            {
-                for (int col = 0; col < edgeAngle[0].length; col++)
-                {
-                    writer.print(edgeAngle[row][col]);
-                    writer.print(" ");
-                }
-                writer.print("\n");
-            }
-            writer.close();
+        for (int row = 0; row < edgeAngle.length; row++)
+        {
+        for (int col = 0; col < edgeAngle[0].length; col++)
+        {
+        writer.print(edgeAngle[row][col]);
+        writer.print(" ");
+        }
+        writer.print("\n");
+        }
+        writer.close();
         }
         catch(Exception e){ e.printStackTrace(); }*/
     }
