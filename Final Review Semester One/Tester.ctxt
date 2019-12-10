@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Tester
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=num
+comment2.target=void\ toTheMax(int)
+comment3.params=levels\ maxLevel
+comment3.target=int\ adjustMaxMin(java.util.ArrayList,\ int)
+comment4.params=minNum\ maxNum
+comment4.target=void\ numberCheck(int,\ int)
+comment5.params=x
+comment5.target=java.lang.String\ go(int)
+numComments=6

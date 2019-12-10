@@ -147,7 +147,7 @@ public class Picture extends SimplePicture
                     minGreen = myPixel.getGreen();
                 else if (myPixel.getBlue() > maxBlue)
                     maxBlue = myPixel.getBlue();
-                else if (myPixel.getGreen() < minBlue)
+                else
                     minBlue = myPixel.getBlue();
             }
         }
@@ -157,8 +157,8 @@ public class Picture extends SimplePicture
         Color averageColor = new Color(redAverage, greenAverage, blueAverage);
         // calculates the range
         int redRange = (maxRed - minRed), greenRange = (maxGreen - minGreen),
-            blueRange = (maxBlue - minBlue), redDistance = redRange,
-            greenDistance = greenRange, blueDistance = blueRange;
+        blueRange = (maxBlue - minBlue), redDistance = redRange,
+        greenDistance = greenRange, blueDistance = blueRange;
         double maxDistance = Math.sqrt(redDistance * redDistance +
                 greenDistance * greenDistance +
                 blueDistance * blueDistance), tolerance = 1.7; // higher tolerance means more pixels will be identified as "fish"
@@ -173,33 +173,6 @@ public class Picture extends SimplePicture
                     myPixel.setBlue(myPixel.getBlue() + 50);
                 else
                     myPixel.setBlue(myPixel.getBlue() - 50);
-            }
-        }
-    }
-
-    /** Method used to make the fish in water.jpg easier to see*/
-    public void fixUnderwater1(){
-        Pixel[][] pixels = this.getPixels2D();
-        int avg = 0, difference = 0;
-        for (Pixel[] rowArray : pixels){
-            for (Pixel pixelObj : rowArray){
-                int red = Math.abs(pixelObj.getRed() - 21),
-                    green = Math.abs(pixelObj.getGreen() - 165),
-                    blue = Math.abs(pixelObj.getBlue() - 175);
-                // (R, G, B) is (21, 160, 175)
-                difference = red + green + blue;
-                if (difference < 21) {
-                    /*pixelObj.setRed(255);
-                    pixelObj.setGreen(255);
-                    pixelObj.setBlue(255);*/
-                    Color newColor = new Color((255 - pixelObj.getRed()), (255 - pixelObj.getGreen()), (255 - pixelObj.getBlue()));
-                    pixelObj.setColor(newColor);
-                }
-                else{
-                    pixelObj.setRed(0);
-                    pixelObj.setGreen(255);
-                    pixelObj.setBlue(0);                 
-                }
             }
         }
     }
@@ -588,7 +561,7 @@ public class Picture extends SimplePicture
         Picture flower1 = new Picture("flower1.jpg");
         Picture flower2 = new Picture("flower2.jpg");
         this.copy(flower1,100,0);
-        this.copy2(flower1,0,100, 0, 100);
+        this.copy2(flower1, 0, 100, 0, 100);
         flower1.explore();
         this.copy(flower1,200,0);
         // Mirroring
@@ -638,10 +611,8 @@ public class Picture extends SimplePicture
         Pixel bottomPixel = null;
         Pixel[][] pixels = this.getPixels2D();
         for (int row = 0; row < pixels.length - 1; row++)
-
         {
-            for (int col = 0; 
-            col < pixels[0].length-1; col++)
+            for (int col = 0; col < pixels[0].length-1; col++)
             {
                 leftPixel = pixels[row][col];
                 rightPixel = pixels[row][col+1];
@@ -650,7 +621,6 @@ public class Picture extends SimplePicture
                 if (leftPixel.colorDistance(rightPixel.getColor()) > edgeDist ||
                 topPixel.colorDistance(bottomPixel.getColor()) > edgeDist)
                     leftPixel.setColor(Color.BLACK);
-
                 else
                     leftPixel.setColor(Color.WHITE);
             }
@@ -722,22 +692,6 @@ public class Picture extends SimplePicture
                 }
             }
         }
-        /*File file = new File("outputAngles.txt");
-        try{
-        PrintWriter writer = new PrintWriter(file, "UTF-8");
-
-        for (int row = 0; row < edgeAngle.length; row++)
-        {
-        for (int col = 0; col < edgeAngle[0].length; col++)
-        {
-        writer.print(edgeAngle[row][col]);
-        writer.print(" ");
-        }
-        writer.print("\n");
-        }
-        writer.close();
-        }
-        catch(Exception e){ e.printStackTrace(); }*/
     }
 
     public double colorDistance(Color testColor1, Color testColor2)
