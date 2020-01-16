@@ -1,4 +1,3 @@
-
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
@@ -41,7 +40,6 @@ public class PictureTester
         beach.explore();
     }
 
-    
     public static void testFixUnderwater2()
     {
         Picture fishes = new Picture("water.jpg");
@@ -139,10 +137,10 @@ public class PictureTester
     /** Method to test edgeDetection */
     public static void testEdgeDetection()
     {
-        Picture elon = new Picture("cursed_kirby3.jpg");
-        elon.explore();
-        elon.edgeDetection(27);
-        elon.explore();
+        Picture kirby_bad = new Picture("cursed_kirby3.jpg");
+        kirby_bad.explore();
+        kirby_bad.edgeDetection(27);
+        kirby_bad.explore();
     }
 
     /** Main method for testing.  Every class can have a main
