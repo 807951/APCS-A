@@ -10,12 +10,20 @@ public class SortTester
     private static int compares;
     private static int swaps;
     private static double timeElapsed;
+    private static int[] arr;
     public static void loadNumbers(ArrayList<Integer> nums, int numOfElements){
         for(int i = 0; i < numOfElements; i++){
             nums.add((int)(Math.random() * 100)+1); 
         }
     }
 
+    public static void loadNumbers(int size){
+        arr = new int[size]; 
+        for(int i = 0; i < arr.length; i++){
+            arr[i] = (int)(Math.random() * 100)+1; 
+        }
+    }
+    
     public static void bubbleSort(ArrayList<Integer> nums){
         timeElapsed = 0;
         double start = System.nanoTime();
@@ -89,8 +97,38 @@ public class SortTester
         System.out.println(arr);
     } 
 
+    public static void printList(int[] a){
+        for(int i = 0; i < a.length; i++)
+            System.out.print(", " + a[i]);
+    } 
+    
+    public static void mergeSort(int[] a){
+        int mid = a.length/2;
+        int[] l = new int[mid], r = new int[a.length-mid];
+        for(int i = 0; i < mid; i++)
+            l[i] = a[i];
+        for(int i = mid; i < a.length; i++)
+            r[i - mid] = a[i];
+        mergeSort(l);
+        mergeSort(r);
+        merge(a, l, r);
+    }
+    
+    public static void merge(int[] a, int[] l, int[] r){
+        int i = 0, j = 0, k = 0;
+        while(i < l.length && j < r.length)
+            if(l[i] <= r[i])
+                a[k++] = l[i++];
+            else
+                a[k++] = r[j++];
+        while(i < l.length)
+            a[k++] = l[i++];
+        while(j < r.length)
+            a[k++] = r[j++];
+    }
+    
     public static void main(String[] args){
-        loadNumbers(numList, 10000);
+        /*loadNumbers(numList, 10000);
         bubbleSort(numList);
         printList(numList);
         System.out.println("Bubble Sort: Swaps: " + swaps  + ", Compares: " + compares 
@@ -109,6 +147,11 @@ public class SortTester
         printList(numList);
         System.out.println("Insert Sort: Swaps: " + swaps  + ", Compares: " + compares 
             + ", Time Elapsed in milliseconds: " + timeElapsed);
-        numList.clear();
+        numList.clear();*/
+        
+        loadNumbers(10);
+        printList(arr);
+        //mergeSort(arr);
+        //printList(arr);
     }
 }
