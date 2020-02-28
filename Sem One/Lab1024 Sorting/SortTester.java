@@ -10,20 +10,20 @@ public class SortTester
     private static int compares;
     private static int swaps;
     private static double timeElapsed;
-    private static int[] arr;
     public static void loadNumbers(ArrayList<Integer> nums, int numOfElements){
         for(int i = 0; i < numOfElements; i++){
             nums.add((int)(Math.random() * 100)+1); 
         }
     }
 
-    public static void loadNumbers(int size){
-        arr = new int[size]; 
+    public static int[] loadNumbers(int size){
+        int[] arr = new int[size]; 
         for(int i = 0; i < arr.length; i++){
             arr[i] = (int)(Math.random() * 100)+1; 
         }
+        return arr;
     }
-    
+
     public static void bubbleSort(ArrayList<Integer> nums){
         timeElapsed = 0;
         double start = System.nanoTime();
@@ -92,7 +92,7 @@ public class SortTester
         double finish = System.nanoTime();
         timeElapsed = ((finish - start)/1000000000);
     }
-    
+
     public static void printList(ArrayList<Integer> arr){
         System.out.println(arr);
     } 
@@ -100,10 +100,13 @@ public class SortTester
     public static void printList(int[] a){
         for(int i = 0; i < a.length; i++)
             System.out.print(", " + a[i]);
+        System.out.println();
     } 
-    
-    public static void mergeSort(int[] a){
+
+    public static int[] mergeSort(int[] a){
         int mid = a.length/2;
+        if(a.length < 2)
+            return a;
         int[] l = new int[mid], r = new int[a.length-mid];
         for(int i = 0; i < mid; i++)
             l[i] = a[i];
@@ -112,46 +115,50 @@ public class SortTester
         mergeSort(l);
         mergeSort(r);
         merge(a, l, r);
+        return a;
     }
-    
-    public static void merge(int[] a, int[] l, int[] r){
+
+    public static int[] merge(int[] af, int[] l, int[] r){
+        int left = l.length;
+        int right = r.length;
         int i = 0, j = 0, k = 0;
-        while(i < l.length && j < r.length)
-            if(l[i] <= r[i])
-                a[k++] = l[i++];
-            else
-                a[k++] = r[j++];
-        while(i < l.length)
-            a[k++] = l[i++];
-        while(j < r.length)
-            a[k++] = r[j++];
+        while (i < left && j < right) {
+            if (l[i] <= r[j]) {
+                af[k++] = l[i++];
+            }else {
+                af[k++] = r[j++];
+            }
+        }
+        while (i < left) { af[k++] = l[i++];}
+        while (j < right) {af[k++] = r[j++];}
+        return af;
     }
-    
+
     public static void main(String[] args){
         /*loadNumbers(numList, 10000);
         bubbleSort(numList);
         printList(numList);
         System.out.println("Bubble Sort: Swaps: " + swaps  + ", Compares: " + compares 
-            + ", Time Elapsed in milliseconds: " + timeElapsed);
+        + ", Time Elapsed in milliseconds: " + timeElapsed);
         numList.clear();
 
         loadNumbers(numList, 10000);
         selectSort(numList);
         printList(numList);
         System.out.println("Select Sort: Swaps: " + swaps  + ", Compares: " + compares 
-            + ", Time Elapsed in milliseconds: " + timeElapsed);
+        + ", Time Elapsed in milliseconds: " + timeElapsed);
         numList.clear();
 
         loadNumbers(numList, 10000);
         insertSort(numList);
         printList(numList);
         System.out.println("Insert Sort: Swaps: " + swaps  + ", Compares: " + compares 
-            + ", Time Elapsed in milliseconds: " + timeElapsed);
+        + ", Time Elapsed in milliseconds: " + timeElapsed);
         numList.clear();*/
-        
-        loadNumbers(10);
-        printList(arr);
-        //mergeSort(arr);
-        //printList(arr);
+
+        int[] nums = loadNumbers(10);
+        printList(nums);
+        mergeSort(nums);
+        printList(nums);
     }
 }
